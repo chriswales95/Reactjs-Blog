@@ -32,11 +32,13 @@ class App extends Component {
                     <Header />
                     <div style={{ padding: "10px", textAlign: "left" }}>
                       <h4>Blog Items</h4>
-                      {this.state.posts.map(post => (
-                        <li key={post.id}>
-                          <Link to={`/article/${post.id}`}>{post.title}</Link>
-                        </li>
-                      ))}
+                      <ul>
+                        {this.state.posts.map(post => (
+                          <li key={post.id}>
+                            <Link to={`/article/${post.id}`}>{post.title}</Link>
+                          </li>
+                        ))}
+                      </ul>
                     </div>
                     <Footer />
                   </div>
