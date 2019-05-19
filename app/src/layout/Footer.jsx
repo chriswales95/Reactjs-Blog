@@ -3,7 +3,12 @@ import React from "react";
 function Footer() {
   return (
     <footer style={mainStyle}>
-      <small>simple footer -- 123456789</small>
+      <a
+        style={{ color: "white" }}
+        href="https://github.com/chriswales95/Reactjs-Blog"
+      >
+        github.com/chriswales95/Reactjs-Blog
+      </a>
     </footer>
   );
 }

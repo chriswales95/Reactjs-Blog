@@ -1,7 +1,6 @@
 import React, { Component } from "react";
 import Header from "../layout/Header";
 import Footer from "../layout/Footer";
-import Heading from "../layout/Heading";
 
 class Article extends Component {
   state = { post: {} };
@@ -29,9 +28,9 @@ class Article extends Component {
               style={{ maxWidth: "auto", textAlign: "centre" }}
               key={this.state.post[p].title}
             >
-              <Heading heading={this.state.post[p].title} />
+              <Header heading={this.state.post[p].title} />
               <div
-                style={{ padding: "10px" }}
+                style={{ padding: "40px" }}
                 dangerouslySetInnerHTML={{ __html: this.state.post[p].content }}
               />
             </div>
@@ -44,7 +43,6 @@ class Article extends Component {
   render() {
     return (
       <div>
-        <Header />
         {this.renderContent()}
         <Footer />
       </div>

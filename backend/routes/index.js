@@ -43,4 +43,21 @@ router.get("/posts/:id", function(req, res, next) {
       });
   });
 });
+
+router.post("/new_blog/", function(req, res, next) {
+  MongoClient.connect("mongodb://localhost:27017/express", function(
+    err,
+    client
+  ) {
+    if (err) throw err;
+
+    var db = client.db("express");
+
+    db.collection("posts").insert({
+      title: req.body.title,
+      content: req.body.content
+    });
+    res.sendStatus(200);
+  });
+});
 module.exports = router;

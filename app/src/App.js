@@ -6,8 +6,8 @@ import Admin from "./components/Admin";
 import { Link } from "react-router-dom";
 import Article from "./components/Article";
 import AdminHome from "./components/AdminHome";
-
 import "./App.css";
+import NewBlog from "./components/NewBlog";
 
 class App extends Component {
   state = { posts: [] };
@@ -29,10 +29,9 @@ class App extends Component {
                 path="/"
                 render={() => (
                   <div className="App">
-                    <Header />
+                    <Header heading={"Blog Posts"} />
                     <div style={{ padding: "10px", textAlign: "left" }}>
-                      <h4>Blog Items</h4>
-                      <ul>
+                      <ul className="mainList">
                         {this.state.posts.map(post => (
                           <li key={post.id}>
                             <Link to={`/article/${post.id}`}>{post.title}</Link>
@@ -44,10 +43,7 @@ class App extends Component {
                   </div>
                 )}
               />
-              <Route
-                path="/new_blog"
-                render={() => <h1>Write New Blog Post</h1>}
-              />
+              <Route path="/new_blog" component={NewBlog} />
               <Route
                 exact
                 path="/admin/"

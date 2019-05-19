@@ -1,10 +1,10 @@
 * {
-  margin: 0;
+  margin: 0px;
   padding: 0px;
 }
 
 body {
-  background-color: #e2dcdc;
+  background-color: white;
 }
 
 .App {
@@ -17,27 +17,28 @@ header a {
 
 header a:hover {
   color: rgb(7, 163, 184);
-  border-bottom: 1px dotted;
 }
 
 a {
   color: black;
 }
-a:hover {
-  color: rgb(11, 105, 74);
-}
 
 .loginForm input[type="username"],
 input[type="password"] {
+  background-color: rgb(241, 241, 241);
   margin: 10px;
   min-width: 40%;
   height: 40px;
-  border-style: none;
+  border-style: solid;
+  border-width: 1px;
+  border-color: #ccc;
   font-size: 16pt;
 }
 
 button,
 input[type="submit"] {
+  margin-left: 5px;
+  margin-right: 5px;
   border: none;
   color: white;
   background-color: #00438b;
@@ -46,7 +47,6 @@ input[type="submit"] {
   text-decoration: none;
   display: inline-block;
   font-size: 16px;
-  margin: 4px 2px;
   -webkit-transition-duration: 0.5s;
   transition-duration: 0.4s;
   cursor: pointer;
@@ -54,9 +54,54 @@ input[type="submit"] {
 
 button:hover,
 input[type="submit"]:hover {
-  background-color: white;
-  color: #0062ca;
+  background-color: #007bff;
   border-style: solid;
   border: 1px;
   border-color: #0062ca;
+}
+
+.mainList {
+  list-style-type: none;
+  margin: 10px;
+  padding: 5px;
+}
+
+li {
+  font: 200 20px/1.5 Helvetica, Verdana, sans-serif;
+  border-bottom: 1px solid #ccc;
+}
+
+/* https://codepen.io/anon/pen/RmZwyy?editors=1100 */
+li a {
+  text-decoration: none;
+  -webkit-transition: font-size 0.3s ease, background-color 0.3s ease;
+  -moz-transition: font-size 0.3s ease, background-color 0.3s ease;
+  -o-transition: font-size 0.3s ease, background-color 0.3s ease;
+  -ms-transition: font-size 0.3s ease, background-color 0.3s ease;
+  transition: font-size 0.3s ease, background-color 0.3s ease;
+  width: 200px;
+}
+
+li:last-child {
+  border: none;
+}
+
+li a:hover {
+  font-size: 40px;
+  color: cornflowerblue;
+}
+
+.App .container div .adminToolbar button {
+  margin-left: "5px";
+  margin-right: "5px";
+}
+
+#new_blog_ta {
+  min-height: 280px;
+  min-width: 100%;
+  font-weight: 400;
+  font-size: 30px;
+  background-color: rgb(241, 241, 241);
+  border: none;
+  resize: horizontal;
 }

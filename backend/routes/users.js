@@ -21,13 +21,14 @@ router.post("/login", function(req, res, next) {
         if (user["username"] === username) {
           bcrypt.compare(req.body.pass, user["pass"], function(err, result) {
             if (result) {
+              res.cookie("LoggedIn", "yes");
               res.sendStatus(200);
             } else {
-              res.sendStatus(403);
+              res.sendStatus(401);
             }
           });
         } else {
-          return res.sendStatus(403);
+          res.sendStatus(401);
         }
       });
   });
