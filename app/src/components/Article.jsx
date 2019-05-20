@@ -7,46 +7,45 @@ class Article extends Component {
 
   componentDidMount() {
     const id = this.props.match.params.id;
-
     fetch(`/posts/${id}/`)
       .then(res => res.json())
-      .then(post => this.setState({ post }));
+      .then(post => {
+        this.setState({ post });
+      });
   }
 
   renderContent() {
-    if (
-      Object.entries(this.state.post).length === 0 &&
-      this.state.post.constructor === Object
-    ) {
-      return <p>Blog does not exist sadly</p>;
-    } else {
+    var post = this.state.post;
+
+    if (post.title) {
       return (
         <div>
           {" "}
-          {Object.keys(this.state.post).map(p => (
+          <div
+            style={{ maxWidth: "auto", textAlign: "centre" }}
+            key={post.title}
+          >
+            <Header heading={post.title} />
             <div
-              style={{ maxWidth: "auto", textAlign: "centre" }}
-              key={this.state.post[p].title}
-            >
-              <Header heading={this.state.post[p].title} />
-              <div
-                style={{ padding: "40px" }}
-                dangerouslySetInnerHTML={{ __html: this.state.post[p].content }}
-              />
-            </div>
-          ))}
+              style={{ padding: "40px" }}
+              dangerouslySetInnerHTML={{ __html: post.content }}
+            />
+            <Footer />
+          </div>
         </div>
       );
-    }
+    } else
+      return (
+        <div>
+          <Header />
+          <p>Post does not exist</p>
+          <Footer />
+        </div>
+      );
   }
 
   render() {
-    return (
-      <div>
-        {this.renderContent()}
-        <Footer />
-      </div>
-    );
+    return this.renderContent();
   }
 }
 

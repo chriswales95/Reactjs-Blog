@@ -32,11 +32,11 @@ router.get("/posts/:id", function(req, res, next) {
     var db = client.db("express");
     var id = parseInt(req.params["id"]);
     db.collection("posts")
-      .find({ id: id })
+      .find()
       .toArray(function(err, result) {
         if (err) throw err;
         if (result.length > 0) {
-          res.json(result);
+          res.json(result[id]);
         } else {
           res.status(403);
         }

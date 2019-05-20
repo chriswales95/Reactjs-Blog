@@ -3,10 +3,10 @@ import Header from "../layout/Header";
 import Footer from "../layout/Footer";
 import axios from "axios";
 
-class NewBlog extends React.Component {
+class NewPost extends React.Component {
   state = {};
 
-  postNewBlog = async event => {
+  newPost = async event => {
     event.preventDefault();
 
     await axios
@@ -16,7 +16,7 @@ class NewBlog extends React.Component {
       })
       .then(res => {
         if (res.status === 200) {
-          this.props.history.push("/");
+          window.location.href = "/new_blog/";
         }
       })
       .catch(err => {
@@ -29,7 +29,7 @@ class NewBlog extends React.Component {
       <div>
         <Header heading={"New Post"} />
         <div style={{ padding: "30px" }}>
-          <form onSubmit={event => this.postNewBlog(event)}>
+          <form onSubmit={event => this.newPost(event)}>
             <input
               name="title"
               style={{
@@ -58,4 +58,4 @@ class NewBlog extends React.Component {
   }
 }
 
-export default NewBlog;
+export default NewPost;

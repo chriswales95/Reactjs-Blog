@@ -1,6 +1,7 @@
 * {
   margin: 0px;
   padding: 0px;
+  max-width: 100%;
 }
 
 body {
@@ -16,7 +17,7 @@ header a {
 }
 
 header a:hover {
-  color: rgb(7, 163, 184);
+  color: rgb(7, 113, 184);
 }
 
 a {
@@ -72,7 +73,7 @@ li {
 }
 
 /* https://codepen.io/anon/pen/RmZwyy?editors=1100 */
-li a {
+.main_list {
   text-decoration: none;
   -webkit-transition: font-size 0.3s ease, background-color 0.3s ease;
   -moz-transition: font-size 0.3s ease, background-color 0.3s ease;
@@ -86,14 +87,16 @@ li:last-child {
   border: none;
 }
 
-li a:hover {
+.main_list:hover {
   font-size: 40px;
   color: cornflowerblue;
 }
 
-.App .container div .adminToolbar button {
+.App div .adminToolbar button {
   margin-left: "5px";
   margin-right: "5px";
+  min-height: 100%;
+  margin-bottom: -142px;
 }
 
 #new_blog_ta {
@@ -104,4 +107,9 @@ li a:hover {
   background-color: rgb(241, 241, 241);
   border: none;
   resize: horizontal;
+}
+
+img {
+  max-height: 100%;
+  max-width: 100%;
 }

@@ -2,15 +2,21 @@ import React, { Component } from "react";
 import { BrowserRouter as Router, Route, Switch } from "react-router-dom";
 import Header from "./layout/Header";
 import Footer from "./layout/Footer";
+import Sidebar from "./layout/Sidebar";
 import Admin from "./components/Admin";
 import { Link } from "react-router-dom";
 import Article from "./components/Article";
 import AdminHome from "./components/AdminHome";
+import NewPost from "./components/NewPost";
+import "../node_modules/bootstrap/dist/css/bootstrap.min.css";
+
 import "./App.css";
-import NewBlog from "./components/NewBlog";
 
 class App extends Component {
-  state = { posts: [] };
+  state = {
+    posts: [],
+    sidebar: { title: "Sidebar", content: "sidebar content" }
+  };
 
   componentDidMount() {
     fetch("/posts")
@@ -21,8 +27,14 @@ class App extends Component {
   render() {
     return (
       <Router>
-        <div className="App">
-          <div className="container">
+        <div
+          className="App"
+          style={{ margin: "0px", padding: "0px", minWidth: "100%" }}
+        >
+          <div
+            className="container"
+            style={{ margin: "0px", padding: "0px", minWidth: "100%" }}
+          >
             <Switch>
               <Route
                 exact
@@ -30,20 +42,37 @@ class App extends Component {
                 render={() => (
                   <div className="App">
                     <Header heading={"Blog Posts"} />
-                    <div style={{ padding: "10px", textAlign: "left" }}>
-                      <ul className="mainList">
-                        {this.state.posts.map(post => (
-                          <li key={post.id}>
-                            <Link to={`/article/${post.id}`}>{post.title}</Link>
-                          </li>
-                        ))}
-                      </ul>
+                    <div
+                      id={"main"}
+                      style={{ padding: "10px", textAlign: "left" }}
+                    >
+                      <div className="row">
+                        <div className="col-md-9 col-sm-12">
+                          <ul className="mainList">
+                            {this.state.posts.map(post => (
+                              <li key={this.state.posts.indexOf(post)}>
+                                <Link
+                                  className={"main_list"}
+                                  to={`/article/${this.state.posts.indexOf(
+                                    post
+                                  )}`}
+                                >
+                                  {post.title}
+                                </Link>
+                              </li>
+                            ))}
+                          </ul>
+                        </div>
+                        <div className="col-md-3 col-sm-12">
+                          <Sidebar content={this.state.sidebar} />
+                        </div>
+                      </div>
                     </div>
                     <Footer />
                   </div>
                 )}
               />
-              <Route path="/new_blog" component={NewBlog} />
+              <Route path="/new_blog" component={NewPost} />
               <Route
                 exact
                 path="/admin/"
