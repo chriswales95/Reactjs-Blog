@@ -1,3 +1,8 @@
+:root {
+  --main-theme-color: #0e275e;
+  --main-theme-hover: #0099ff;
+}
+
 * {
   margin: 0px;
   padding: 0px;
@@ -6,6 +11,7 @@
 
 body {
   background-color: white;
+  margin-bottom: 30px;
 }
 
 .App {
@@ -17,7 +23,7 @@ header a {
 }
 
 header a:hover {
-  color: rgb(7, 113, 184);
+  color: var(--main-theme-hover);
 }
 
 a {
@@ -42,7 +48,7 @@ input[type="submit"] {
   margin-right: 5px;
   border: none;
   color: white;
-  background-color: #00438b;
+  background-color: var(--main-theme-color);
   padding: 10px 20px;
   text-align: center;
   text-decoration: none;
@@ -51,14 +57,12 @@ input[type="submit"] {
   -webkit-transition-duration: 0.5s;
   transition-duration: 0.4s;
   cursor: pointer;
+  border-radius: 6px;
 }
 
 button:hover,
 input[type="submit"]:hover {
-  background-color: #007bff;
-  border-style: solid;
-  border: 1px;
-  border-color: #0062ca;
+  background-color: var(--main-theme-hover);
 }
 
 .mainList {
@@ -88,7 +92,7 @@ li:last-child {
 }
 
 .main_list:hover {
-  font-size: 40px;
+  font-size: 25px;
   color: cornflowerblue;
 }
 

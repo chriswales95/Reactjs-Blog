@@ -13,7 +13,7 @@ function Header(props) {
 
 const headingStyle = {
   paddingBottom: "5px",
-  backgroundColor: "#0e275e",
+  backgroundColor: "var(--main-theme-color)",
   color: "white",
   paddingTop: "10px",
   PaddingBottom: "10px",
@@ -21,7 +21,7 @@ const headingStyle = {
 };
 
 const mainStyle = {
-  backgroundColor: "#0e275e",
+  backgroundColor: "var(--main-theme-color)",
   color: "white",
   padding: "10px",
   maxWidth: "100%"

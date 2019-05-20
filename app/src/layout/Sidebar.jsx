@@ -10,7 +10,7 @@ class Sidebar extends React.Component {
         <h5
           style={{
             textAlign: "center",
-            backgroundColor: "#0e275e",
+            backgroundColor: "var(--main-theme-color)",
             color: "white",
             padding: "10px"
           }}

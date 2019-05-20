@@ -14,7 +14,7 @@ function Footer() {
 }
 
 const mainStyle = {
-  backgroundColor: "#0e275e",
+  backgroundColor: "var(--main-theme-color)",
   color: "white",
   paddingTop: "10px",
   paddingBottom: "10px",
