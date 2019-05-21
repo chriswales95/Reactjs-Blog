@@ -2,41 +2,41 @@ import React, { Component } from "react";
 import Header from "../layout/Header";
 import Footer from "../layout/Footer";
 import Cookies from "universal-cookie";
-
+import Toolbar from "../layout/Toolbar";
+import Sidebar from "../layout/Sidebar";
 const cookies = new Cookies();
 
 class AdminHome extends Component {
-  state = {};
+  buttons = [
+    { text: "Logout", onClick: () => this.logOut() },
+    { text: "New Post", onClick: () => (window.location.href = "/new_blog") }
+  ];
+
+  sidebar = {
+    title: "dojodj",
+    content: "ye boi"
+  };
 
   logOut() {
-    cookies.remove("LoggedIn");
-    this.props.history.push("/");
+    cookies.set("LoggedIn", "no", { path: "/" });
+
+    window.location.replace("/");
   }
 
   LoggedIn() {
-    if (cookies.get("LoggedIn")) {
+    if (cookies.get("LoggedIn") === "yes") {
       return (
         <React.Fragment>
           <Header heading={"Admin"} />
-
-          <div
-            className="adminToolbar"
-            style={{
-              padding: "10px",
-              backgroundColor: "#f7f7f9",
-              textAlign: "left"
-            }}
-          >
-            <button
-              onClick={() => {
-                window.location.href = "/new_blog";
-              }}
-            >
-              New Post
-            </button>
-            <button onClick={() => this.logOut()}>Log Out</button>
+          <Toolbar buttons={this.buttons} />
+          <div className={"row"}>
+            <div className="col-md-10 col-sm-12">
+              <p>...</p>
+            </div>
+            <div className="col-md-2 col-sm-12">
+              <Sidebar content={this.sidebar} />
+            </div>
           </div>
-
           <Footer />
         </React.Fragment>
       );

@@ -8,7 +8,7 @@ class Admin extends React.Component {
   loggedIn() {
     const cookies = new Cookies();
 
-    if (cookies.get("LoggedIn")) {
+    if (cookies.get("LoggedIn") === "yes") {
       this.props.history.push("/admin/home");
     }
   }

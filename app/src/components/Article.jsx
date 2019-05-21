@@ -1,9 +1,14 @@
 import React, { Component } from "react";
 import Header from "../layout/Header";
 import Footer from "../layout/Footer";
+import Cookies from "universal-cookie";
+import Toolbar from "../layout/Toolbar";
+
+const cookies = new Cookies();
 
 class Article extends Component {
   state = { post: {} };
+  buttons = [{ text: "delete", onClick: () => console.log("test") }];
 
   componentDidMount() {
     const id = this.props.match.params.id;
@@ -14,18 +19,24 @@ class Article extends Component {
       });
   }
 
+  Toolbar() {
+    if (cookies.get("LoggedIn") === "yes") {
+      return <Toolbar buttons={this.buttons} />;
+    }
+  }
+
   renderContent() {
     var post = this.state.post;
 
     if (post.title) {
       return (
         <div>
-          {" "}
           <div
             style={{ maxWidth: "auto", textAlign: "centre" }}
             key={post.title}
           >
             <Header heading={post.title} />
+            {this.Toolbar()}
             <div
               style={{ padding: "40px" }}
               dangerouslySetInnerHTML={{ __html: post.content }}
