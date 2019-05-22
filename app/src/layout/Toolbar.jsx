@@ -6,7 +6,11 @@ class Toolbar extends React.Component {
       <div style={style}>
         {this.props.buttons.map(item => {
           return (
-            <button key={item.text} onClick={() => item.onClick()}>
+            <button
+              style={item.style}
+              key={item.text}
+              onClick={() => item.onClick()}
+            >
               {item.text}
             </button>
           );
@@ -17,7 +21,7 @@ class Toolbar extends React.Component {
 }
 
 const style = {
-  padding: "10px",
+  padding: "15px",
   backgroundColor: "#f7f7f9",
   textAlign: "left",
   marginBottom: "10px"

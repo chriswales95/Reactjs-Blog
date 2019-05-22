@@ -3,12 +3,18 @@ import Header from "../layout/Header";
 import Footer from "../layout/Footer";
 import Cookies from "universal-cookie";
 import Toolbar from "../layout/Toolbar";
+import axios from "axios";
 
 const cookies = new Cookies();
 
 class Article extends Component {
   state = { post: {} };
-  buttons = [{ text: "delete", onClick: () => console.log("test") }];
+  buttons = [
+    {
+      text: "delete",
+      onClick: () => this.deletePost()
+    }
+  ];
 
   componentDidMount() {
     const id = this.props.match.params.id;
@@ -54,6 +60,14 @@ class Article extends Component {
         </div>
       );
   }
+
+  deletePost = async () => {
+    axios
+      .post("/deletePost", {
+        title: this.state.post.title
+      })
+      .then((window.location.href = "/"));
+  };
 
   render() {
     return this.renderContent();

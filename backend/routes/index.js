@@ -60,4 +60,23 @@ router.post("/new_blog/", function(req, res, next) {
     res.sendStatus(200);
   });
 });
+
+router.post("/deletePost/", function(req, res, next) {
+  console.log(req.body);
+
+  MongoClient.connect("mongodb://localhost:27017/express", function(
+    err,
+    client
+  ) {
+    if (err) throw err;
+
+    var db = client.db("express");
+
+    db.collection("posts").deleteOne({ title: req.body.title }, (err, item) => {
+      if (err) console.log(err);
+      console.log(item + " deleted");
+      res.sendStatus(200);
+    });
+  });
+});
 module.exports = router;

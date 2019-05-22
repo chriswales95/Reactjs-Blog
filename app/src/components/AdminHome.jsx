@@ -9,7 +9,7 @@ const cookies = new Cookies();
 class AdminHome extends Component {
   buttons = [
     { text: "Logout", onClick: () => this.logOut() },
-    { text: "New Post", onClick: () => (window.location.href = "/new_blog") }
+    { text: "New Post", onClick: () => this.props.history.push("/new_blog/") }
   ];
 
   sidebar = {
