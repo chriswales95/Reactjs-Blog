@@ -1,14 +1,10 @@
 var express = require("express");
 var router = express.Router();
-
 var MongoClient = require("mongodb").MongoClient;
+const mongoURL = "mongodb://localhost:27017/express";
 
-/* GET users listing. */
 router.get("/posts", function(req, res, next) {
-  MongoClient.connect("mongodb://localhost:27017/express", function(
-    err,
-    client
-  ) {
+  MongoClient.connect(mongoURL, function(err, client) {
     if (err) throw err;
 
     var db = client.db("express");
@@ -23,10 +19,7 @@ router.get("/posts", function(req, res, next) {
 });
 
 router.get("/posts/:id", function(req, res, next) {
-  MongoClient.connect("mongodb://localhost:27017/express", function(
-    err,
-    client
-  ) {
+  MongoClient.connect(mongoURL, function(err, client) {
     if (err) throw err;
 
     var db = client.db("express");
@@ -45,15 +38,12 @@ router.get("/posts/:id", function(req, res, next) {
 });
 
 router.post("/new_blog/", function(req, res, next) {
-  MongoClient.connect("mongodb://localhost:27017/express", function(
-    err,
-    client
-  ) {
+  MongoClient.connect(mongoURL, function(err, client) {
     if (err) throw err;
 
     var db = client.db("express");
 
-    db.collection("posts").insert({
+    db.collection("posts").insertOne({
       title: req.body.title,
       content: req.body.content
     });
@@ -62,20 +52,14 @@ router.post("/new_blog/", function(req, res, next) {
 });
 
 router.post("/deletePost/", function(req, res, next) {
-  console.log(req.body);
-
-  MongoClient.connect("mongodb://localhost:27017/express", function(
-    err,
-    client
-  ) {
+  MongoClient.connect(mongoURL, function(err, client) {
     if (err) throw err;
-
+    console.log(req.body);
     var db = client.db("express");
-
     db.collection("posts").deleteOne({ title: req.body.title }, (err, item) => {
-      if (err) console.log(err);
-      console.log(item + " deleted");
-      res.sendStatus(200);
+      if (err) throw err;
+
+      if (!err) res.sendStatus(200);
     });
   });
 });

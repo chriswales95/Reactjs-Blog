@@ -7,6 +7,7 @@ class Toolbar extends React.Component {
         {this.props.buttons.map(item => {
           return (
             <button
+              type={"button"}
               style={item.style}
               key={item.text}
               onClick={() => item.onClick()}

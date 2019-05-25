@@ -66,7 +66,7 @@ class Article extends Component {
       .post("/deletePost", {
         title: this.state.post.title
       })
-      .then((window.location.href = "/"));
+      .then(window.location.replace("/"));
   };
 
   render() {

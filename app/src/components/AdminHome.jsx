@@ -1,4 +1,4 @@
-import React, { Component } from "react";
+import React from "react";
 import Header from "../layout/Header";
 import Footer from "../layout/Footer";
 import Cookies from "universal-cookie";
@@ -6,7 +6,7 @@ import Toolbar from "../layout/Toolbar";
 import Sidebar from "../layout/Sidebar";
 const cookies = new Cookies();
 
-class AdminHome extends Component {
+class AdminHome extends React.Component {
   buttons = [
     { text: "Logout", onClick: () => this.logOut() },
     { text: "New Post", onClick: () => this.props.history.push("/new_blog/") }
@@ -18,8 +18,8 @@ class AdminHome extends Component {
   };
 
   logOut() {
-    cookies.set("LoggedIn", "no", { path: "/" });
-
+    cookies.remove("LoggedIn", { path: "/" });
+    cookies.remove("name", { path: "/" });
     window.location.replace("/");
   }
 
@@ -29,11 +29,11 @@ class AdminHome extends Component {
         <React.Fragment>
           <Header heading={"Admin"} />
           <Toolbar buttons={this.buttons} />
-          <div className={"row"}>
-            <div className="col-md-10 col-sm-12">
-              <p>...</p>
+          <div style={{ margin: "5px" }} className={"row"}>
+            <div style={{ textAlign: "left" }} className="col-md-9 col-sm-12">
+              <p>Hello {cookies.get("name")}</p>
             </div>
-            <div className="col-md-2 col-sm-12">
+            <div className="col-md-3 col-sm-12">
               <Sidebar content={this.sidebar} />
             </div>
           </div>

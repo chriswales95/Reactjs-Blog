@@ -22,6 +22,10 @@ header a {
   color: white;
 }
 
+li a:hover {
+  color: var(--main-theme-hover);
+}
+
 header a:hover {
   color: var(--main-theme-hover);
 }
@@ -67,7 +71,7 @@ input[type="submit"]:hover {
 
 .mainList {
   list-style-type: none;
-  margin: 10px;
+  margin: 20px;
   padding: 5px;
 }
 
@@ -93,7 +97,7 @@ li:last-child {
 
 .main_list:hover {
   font-size: 25px;
-  color: cornflowerblue;
+  color: var(--main-theme-hover);
 }
 
 .App div .adminToolbar button {

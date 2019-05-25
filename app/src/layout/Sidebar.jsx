@@ -20,7 +20,7 @@ class Sidebar extends React.Component {
         <div style={{ padding: "10px" }}>
           <p>{content.content}</p>
           <li>
-            <a href="#">link to somewhere</a>
+            <a href="/">link to somewhere</a>
           </li>
         </div>
       </div>
@@ -31,7 +31,7 @@ class Sidebar extends React.Component {
 const style = {
   backgroundColor: "#ededed",
   padding: "0px",
-  margin: "0px",
+  margin: "10px",
   textAlign: "left"
 };
 export default Sidebar;

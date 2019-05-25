@@ -42,10 +42,7 @@ class App extends Component {
                 render={() => (
                   <div className="App">
                     <Header heading={"Blog Posts"} />
-                    <div
-                      id={"main"}
-                      style={{ padding: "10px", textAlign: "left" }}
-                    >
+                    <div id={"main"} style={{ textAlign: "left" }}>
                       <div className="row">
                         <div className="col-md-9 col-sm-12">
                           <ul className="mainList">
