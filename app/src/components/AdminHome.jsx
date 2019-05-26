@@ -1,20 +1,24 @@
 import React from "react";
-import Header from "../layout/Header";
-import Footer from "../layout/Footer";
 import Cookies from "universal-cookie";
-import Toolbar from "../layout/Toolbar";
+import Footer from "../layout/Footer";
+import Header from "../layout/Header";
 import Sidebar from "../layout/Sidebar";
+import Toolbar from "../layout/Toolbar";
 const cookies = new Cookies();
 
 class AdminHome extends React.Component {
   buttons = [
-    { text: "Logout", onClick: () => this.logOut() },
-    { text: "New Post", onClick: () => this.props.history.push("/new_blog/") }
+    { text: "New Post", onClick: () => this.props.history.push("/new_blog/") },
+    {
+      text: "Authentication",
+      onClick: () => console.log("manage users")
+    },
+    { text: "Logout", onClick: () => this.logOut() }
   ];
 
   sidebar = {
-    title: "dojodj",
-    content: "ye boi"
+    title: "Title",
+    content: "Content"
   };
 
   logOut() {

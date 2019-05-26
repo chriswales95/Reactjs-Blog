@@ -3,7 +3,6 @@ import Header from "../layout/Header";
 import Footer from "../layout/Footer";
 import Cookies from "universal-cookie";
 import Toolbar from "../layout/Toolbar";
-import axios from "axios";
 
 const cookies = new Cookies();
 
@@ -44,6 +43,7 @@ class Article extends Component {
             <Header heading={post.title} />
             {this.Toolbar()}
             <div
+              className={"row"}
               style={{ padding: "40px" }}
               dangerouslySetInnerHTML={{ __html: post.content }}
             />
@@ -61,13 +61,18 @@ class Article extends Component {
       );
   }
 
-  deletePost = async () => {
-    axios
-      .post("/deletePost", {
-        title: this.state.post.title
-      })
-      .then(window.location.replace("/"));
-  };
+  deletePost() {
+    var http = new XMLHttpRequest();
+    http.open("DELETE", "/deletePost/", true);
+    http.setRequestHeader("Content-type", "application/json");
+    http.onreadystatechange = function() {
+      if (http.readyState === 4) {
+        window.location.replace("/");
+      }
+    };
+    var json = JSON.stringify(this.state.post);
+    http.send(json);
+  }
 
   render() {
     return this.renderContent();

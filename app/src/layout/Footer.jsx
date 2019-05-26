@@ -15,11 +15,9 @@ function Footer() {
 
 const mainStyle = {
   backgroundColor: "var(--main-theme-color)",
+  padding: "30px",
+  clear: "both",
   color: "white",
-  paddingTop: "10px",
-  paddingBottom: "10px",
-  bottom: 0,
-  position: "fixed",
   width: "100%"
 };
 

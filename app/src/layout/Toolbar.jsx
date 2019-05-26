@@ -1,4 +1,7 @@
 import React from "react";
+import Cookies from "universal-cookie";
+import axios from "axios";
+const cookies = new Cookies();
 
 class Toolbar extends React.Component {
   render() {
@@ -8,7 +11,6 @@ class Toolbar extends React.Component {
           return (
             <button
               type={"button"}
-              style={item.style}
               key={item.text}
               onClick={() => item.onClick()}
             >

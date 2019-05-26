@@ -51,10 +51,9 @@ router.post("/new_blog/", function(req, res, next) {
   });
 });
 
-router.post("/deletePost/", function(req, res, next) {
+router.delete("/deletePost/", function(req, res, next) {
   MongoClient.connect(mongoURL, function(err, client) {
     if (err) throw err;
-    console.log(req.body);
     var db = client.db("express");
     db.collection("posts").deleteOne({ title: req.body.title }, (err, item) => {
       if (err) throw err;
