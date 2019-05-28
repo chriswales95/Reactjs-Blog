@@ -11,7 +11,7 @@ class AdminHome extends React.Component {
     { text: "New Post", onClick: () => this.props.history.push("/new_blog/") },
     {
       text: "Authentication",
-      onClick: () => console.log("manage users")
+      onClick: () => this.props.history.push("/admin/users/")
     },
     { text: "Logout", onClick: () => this.logOut() }
   ];

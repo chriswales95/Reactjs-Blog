@@ -37,7 +37,7 @@ class Admin extends React.Component {
         {this.loggedIn()}
         <Header heading={"Admin"} />
         <br />
-        <div class={"row"}>
+        <div className={"row"}>
           <form onSubmit={event => this.handlePostEvent(event)}>
             <table
               className="loginForm"
@@ -49,21 +49,30 @@ class Admin extends React.Component {
               }}
             >
               <tbody>
-                <th>
-                  <h3>Username </h3>
-                </th>
                 <tr>
-                  <input name="username" type="username" />
+                  <th>
+                    <h3>Username </h3>
+                  </th>
                 </tr>
-                <th>
-                  <h3>Password </h3>
-                </th>
                 <tr>
-                  <input name="pass" type="password" />
+                  <td>
+                    <input name="username" type="username" />
+                  </td>
                 </tr>
-                <br />
                 <tr>
-                  <input type="submit" value="login" />
+                  <th>
+                    <h3>Password </h3>
+                  </th>
+                </tr>
+                <tr>
+                  <td>
+                    <input name="pass" type="password" />
+                  </td>
+                </tr>
+                <tr>
+                  <td>
+                    <input type="submit" value="login" />
+                  </td>
                 </tr>
               </tbody>
             </table>

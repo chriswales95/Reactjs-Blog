@@ -26,10 +26,13 @@ class NewPost extends React.Component {
 
   render() {
     return (
-      <div>
+      <React.Fragment>
         <Header heading={"New Post"} />
-        <div style={{ padding: "30px" }}>
-          <form onSubmit={event => this.newPost(event)}>
+        <div className={"row"}>
+          <form
+            style={{ width: "100%", margin: 0, padding: "50px" }}
+            onSubmit={event => this.newPost(event)}
+          >
             <input
               name="title"
               style={{
@@ -53,7 +56,7 @@ class NewPost extends React.Component {
           </form>
         </div>
         <Footer />
-      </div>
+      </React.Fragment>
     );
   }
 }

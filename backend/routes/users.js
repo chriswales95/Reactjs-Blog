@@ -29,4 +29,39 @@ router.post("/login", function(req, res, next) {
       });
   });
 });
+
+router.get("/manage", function(req, res, next) {
+  MongoClient.connect(mongoURL, function(err, client) {
+    var db = client.db("express");
+
+    db.collection("users")
+      .find()
+      .toArray(function(err, result) {
+        res.json(result);
+      });
+  });
+});
+
+router.post("/userIsSU", function(req, res, next) {
+  MongoClient.connect(mongoURL, function(err, client) {
+    var db = client.db("express");
+
+    db.collection("users").findOne({ username: req.body.username }, function(
+      err,
+      result
+    ) {
+      if (err) res.sendStatus(401);
+      if (result !== null) {
+        if (result.superUser === true) {
+          res.sendStatus(200);
+        } else {
+          res.sendStatus(401);
+        }
+      } else {
+        res.sendStatus(401);
+      }
+    });
+  });
+});
+
 module.exports = router;

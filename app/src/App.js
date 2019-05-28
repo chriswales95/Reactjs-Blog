@@ -8,6 +8,8 @@ import { Link } from "react-router-dom";
 import Article from "./components/Article";
 import AdminHome from "./components/AdminHome";
 import NewPost from "./components/NewPost";
+import UserManagement from "./components/Users";
+
 import "../node_modules/bootstrap/dist/css/bootstrap.min.css";
 
 import "./App.css";
@@ -80,6 +82,7 @@ class App extends Component {
               <Route exact path="/admin/login" component={Admin} />
               <Route exact path="/article/:id" component={Article} />
               <Route exact path="/admin/home" component={AdminHome} />
+              <Route exact path="/admin/users" component={UserManagement} />
               <Route
                 component={() => {
                   return "Content Not Found";

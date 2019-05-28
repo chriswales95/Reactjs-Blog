@@ -12,7 +12,8 @@ class Article extends Component {
     {
       text: "delete",
       onClick: () => this.deletePost()
-    }
+    },
+    { text: "edit", onClick: () => console.log("edit") }
   ];
 
   componentDidMount() {
