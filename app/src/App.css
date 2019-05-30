@@ -10,7 +10,7 @@
 }
 
 body {
-  background-color: white;
+  background-color: rgb(238, 238, 238);
 }
 
 .row {
@@ -75,9 +75,11 @@ input[type="submit"]:hover {
 }
 
 .mainList {
+  background-color: white;
   list-style-type: none;
   margin: 20px;
-  padding: 5px;
+  padding: 20px;
+  box-shadow: 0 4px 6px -5px rgba(0, 0, 0, 0.3);
 }
 
 li {
@@ -129,7 +131,7 @@ img {
 #usertable {
   text-align: left;
   padding: 2px;
-  border: 1px;
+  border: 1.5px;
   border-collapse: collapse;
 }
 
@@ -146,5 +148,14 @@ img {
 }
 
 #userTable tr:hover td {
-  background-color: rgb(241, 241, 241);
+  background-color: rgb(243, 243, 243);
+}
+
+#side-buttons-users button {
+  margin-bottom: 10px;
+}
+
+input[type="text"],
+textarea {
+  padding-left: 5px;
 }

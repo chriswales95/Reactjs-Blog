@@ -45,7 +45,7 @@ class Article extends Component {
             {this.Toolbar()}
             <div
               className={"row"}
-              style={{ padding: "40px" }}
+              style={{ padding: "20px" }}
               dangerouslySetInnerHTML={{ __html: post.content }}
             />
             <Footer />

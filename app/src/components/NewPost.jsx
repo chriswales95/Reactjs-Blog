@@ -41,7 +41,7 @@ class NewPost extends React.Component {
                 height: "50px",
                 fontSize: "40px",
                 border: "none",
-                backgroundColor: "rgb(241, 241, 241)"
+                backgroundColor: "white"
               }}
               type={"text"}
               placeholder={"Title"}
@@ -51,6 +51,7 @@ class NewPost extends React.Component {
               name="content"
               id="new_blog_ta"
               placeholder="Blog content in html"
+              style={{ backgroundColor: "white" }}
             />
             <input type="submit" value="Submit" />
           </form>

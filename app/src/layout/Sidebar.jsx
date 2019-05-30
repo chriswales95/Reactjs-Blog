@@ -29,9 +29,10 @@ class Sidebar extends React.Component {
 }
 
 const style = {
-  backgroundColor: "#ededed",
+  backgroundColor: "white",
   padding: "0px",
-  margin: "10px",
-  textAlign: "left"
+  margin: "20px",
+  textAlign: "left",
+  boxShadow: "0 4px 6px -5px rgba(0,0,0,0.3)"
 };
 export default Sidebar;

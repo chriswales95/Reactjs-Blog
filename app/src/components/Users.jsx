@@ -20,10 +20,11 @@ class UserManagement extends React.Component {
         <React.Fragment>
           <Header heading={"User Management"} />
           <div className={"row"} style={{ padding: "40px" }}>
-            <div>
-              <table id={"userTable"}>
+            <div className={"col-md-10"}>
+              <table id={"userTable"} style={{ minWidth: "90%" }}>
                 <tbody>
                   <tr key={"header"}>
+                    <th />
                     <th>ID</th>
                     <th>Username</th>
                     <th>First Name</th>
@@ -32,6 +33,13 @@ class UserManagement extends React.Component {
                   </tr>
                   {this.state.users.map(user => (
                     <tr key={user._id}>
+                      <td>
+                        <input
+                          type={"radio"}
+                          name="userChoice"
+                          value={user.username}
+                        />
+                      </td>
                       <td>{user._id}</td>
                       <td>{user.username}</td>
                       <td>{user.firstName}</td>
@@ -41,6 +49,13 @@ class UserManagement extends React.Component {
                   ))}
                 </tbody>
               </table>
+            </div>
+            <div id={"side-buttons-users"} className={"col-md-02"}>
+              <button>Delete</button>
+              <br />
+              <button>Enable</button>
+              <br />
+              <button>Disable</button>
             </div>
           </div>
           <Footer />

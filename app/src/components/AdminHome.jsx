@@ -35,7 +35,9 @@ class AdminHome extends React.Component {
           <Toolbar buttons={this.buttons} />
           <div style={{ margin: "5px" }} className={"row"}>
             <div style={{ textAlign: "left" }} className="col-md-9 col-sm-12">
-              <p>Hello {cookies.get("name")}</p>
+              <div style={greetingStyle} className={"greetingBox"}>
+                <p>Hello {cookies.get("name")}</p>
+              </div>
             </div>
             <div className="col-md-3 col-sm-12">
               <Sidebar content={this.sidebar} />
@@ -54,4 +56,12 @@ class AdminHome extends React.Component {
   }
 }
 
+const greetingStyle = {
+  backgroundColor: "white",
+  fontSize: "20pt",
+  padding: "10px 0px 1px 5px",
+  margin: "20px",
+  boxShadow: "0 4px 6px -5px rgba(0, 0, 0, 0.3)",
+  maxWidth: "33%"
+};
 export default AdminHome;

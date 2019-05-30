@@ -56,7 +56,11 @@ class Admin extends React.Component {
                 </tr>
                 <tr>
                   <td>
-                    <input name="username" type="username" />
+                    <input
+                      style={{ backgroundColor: "white" }}
+                      name="username"
+                      type="username"
+                    />
                   </td>
                 </tr>
                 <tr>
@@ -66,7 +70,11 @@ class Admin extends React.Component {
                 </tr>
                 <tr>
                   <td>
-                    <input name="pass" type="password" />
+                    <input
+                      style={{ backgroundColor: "white" }}
+                      name="pass"
+                      type="password"
+                    />
                   </td>
                 </tr>
                 <tr>

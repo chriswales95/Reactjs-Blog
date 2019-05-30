@@ -21,7 +21,7 @@ class Toolbar extends React.Component {
 }
 
 const style = {
-  padding: "15px",
+  padding: "10px 15px 10px 15px",
   backgroundColor: "#f7f7f9",
   textAlign: "left",
   marginBottom: "10px"
