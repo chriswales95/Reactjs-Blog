@@ -159,3 +159,8 @@ input[type="text"],
 textarea {
   padding-left: 5px;
 }
+
+input,
+textarea {
+  box-shadow: 0 4px 6px -5px rgba(0, 0, 0, 0.3);
+}

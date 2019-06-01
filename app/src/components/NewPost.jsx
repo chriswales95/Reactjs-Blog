@@ -39,7 +39,7 @@ class NewPost extends React.Component {
                 marginBottom: "5px",
                 width: "100%",
                 height: "50px",
-                fontSize: "40px",
+                fontSize: "37px",
                 border: "none",
                 backgroundColor: "white"
               }}

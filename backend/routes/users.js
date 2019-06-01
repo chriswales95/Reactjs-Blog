@@ -5,7 +5,6 @@ var bcrypt = require("bcrypt");
 const mongoURL = "mongodb://localhost:27017/express";
 
 router.post("/login", function(req, res, next) {
-  var username = req.body.username;
   MongoClient.connect(mongoURL, function(err, client) {
     if (err) throw err;
 

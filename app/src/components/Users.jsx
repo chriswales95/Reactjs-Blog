@@ -1,10 +1,20 @@
 import React from "react";
 import Header from "../layout/Header";
 import Footer from "../layout/Footer";
+import Toolbar from "../layout/Toolbar";
 import Cookies from "universal-cookie";
 
 class UserManagement extends React.Component {
   state = { users: [] };
+
+  buttons = [
+    { text: "Delete", onClick: () => console.log("...") },
+    {
+      text: "Enable",
+      onClick: () => console.log("...")
+    },
+    { text: "Disable", onClick: () => console.log("...") }
+  ];
 
   componentDidMount() {
     fetch("/users/manage")
@@ -19,44 +29,42 @@ class UserManagement extends React.Component {
       return (
         <React.Fragment>
           <Header heading={"User Management"} />
-          <div className={"row"} style={{ padding: "40px" }}>
-            <div className={"col-md-10"}>
-              <table id={"userTable"} style={{ minWidth: "90%" }}>
-                <tbody>
-                  <tr key={"header"}>
-                    <th />
-                    <th>ID</th>
-                    <th>Username</th>
-                    <th>First Name</th>
-                    <th>Last Name</th>
-                    <th>Admin</th>
+          <Toolbar buttons={this.buttons} />
+          <div className={"row"} style={{ padding: "20px" }}>
+            <table
+              id={"userTable"}
+              style={{
+                boxShadow: "0 4px 6px -5px rgba(0, 0, 0, 0.3)",
+                minWidth: "100%"
+              }}
+            >
+              <tbody>
+                <tr key={"header"}>
+                  <th />
+                  <th>ID</th>
+                  <th>Username</th>
+                  <th>First Name</th>
+                  <th>Last Name</th>
+                  <th>Admin</th>
+                </tr>
+                {this.state.users.map(user => (
+                  <tr key={user._id}>
+                    <td>
+                      <input
+                        type={"radio"}
+                        name="userChoice"
+                        value={user.username}
+                      />
+                    </td>
+                    <td>{user._id}</td>
+                    <td>{user.username}</td>
+                    <td>{user.firstName}</td>
+                    <td>{user.lastName}</td>
+                    <td>{user.superUser === true ? "Yes" : "No"}</td>
                   </tr>
-                  {this.state.users.map(user => (
-                    <tr key={user._id}>
-                      <td>
-                        <input
-                          type={"radio"}
-                          name="userChoice"
-                          value={user.username}
-                        />
-                      </td>
-                      <td>{user._id}</td>
-                      <td>{user.username}</td>
-                      <td>{user.firstName}</td>
-                      <td>{user.lastName}</td>
-                      <td>{user.superUser === true ? "Yes" : "No"}</td>
-                    </tr>
-                  ))}
-                </tbody>
-              </table>
-            </div>
-            <div id={"side-buttons-users"} className={"col-md-02"}>
-              <button>Delete</button>
-              <br />
-              <button>Enable</button>
-              <br />
-              <button>Disable</button>
-            </div>
+                ))}
+              </tbody>
+            </table>
           </div>
           <Footer />
         </React.Fragment>
