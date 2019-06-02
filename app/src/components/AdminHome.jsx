@@ -24,6 +24,7 @@ class AdminHome extends React.Component {
   logOut() {
     cookies.remove("LoggedIn", { path: "/" });
     cookies.remove("name", { path: "/" });
+    cookies.remove("username", { path: "/" });
     window.location.replace("/");
   }
 

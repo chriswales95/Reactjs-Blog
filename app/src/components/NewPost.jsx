@@ -9,19 +9,26 @@ class NewPost extends React.Component {
   newPost = async event => {
     event.preventDefault();
 
-    await axios
-      .post("/new_blog/", {
-        title: event.target.elements.title.value,
-        content: event.target.elements.content.value
-      })
-      .then(res => {
-        if (res.status === 200) {
-          window.location.href = "/new_blog/";
-        }
-      })
-      .catch(err => {
-        alert(err.message);
-      });
+    if (
+      event.target.elements.title.value === "" ||
+      event.target.elements.content.value === ""
+    ) {
+      alert("Content seems a bit empty...");
+    } else {
+      await axios
+        .post("/new_blog/", {
+          title: event.target.elements.title.value,
+          content: event.target.elements.content.value
+        })
+        .then(res => {
+          if (res.status === 200) {
+            window.location.href = "/new_blog/";
+          }
+        })
+        .catch(err => {
+          alert(err.message);
+        });
+    }
   };
 
   render() {

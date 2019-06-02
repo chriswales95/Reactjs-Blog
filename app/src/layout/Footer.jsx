@@ -10,7 +10,7 @@ function Footer() {
         >
           <h2>About</h2>
           Created by Christopher Wales
-          <br />A project for learning ReactJS
+          <br />A mini-project for learning ReactJS
         </div>
         <div
           style={{ padding: "0", margin: "0" }}
@@ -40,11 +40,11 @@ function Footer() {
         >
           <p
             style={{
-              paddingTop: "20px",
-              paddingBottom: "20px"
+              paddingTop: "0px",
+              paddingBottom: "0px"
             }}
           >
-            <small>© some random copyright text</small>
+            <small>© 2019 Christopher Wales</small>
           </p>
         </div>
       </div>

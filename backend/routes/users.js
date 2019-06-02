@@ -35,7 +35,7 @@ router.get("/manage", function(req, res, next) {
     var db = client.db("express");
 
     db.collection("users")
-      .find()
+      .find({}, { projection: { pass: 0 } })
       .toArray(function(err, result) {
         res.json(result);
       });
