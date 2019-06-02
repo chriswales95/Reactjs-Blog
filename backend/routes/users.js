@@ -20,6 +20,7 @@ router.post("/login", function(req, res, next) {
           if (result) {
             res.cookie("LoggedIn", "yes");
             res.cookie("name", user.firstName);
+            res.cookie("username", user.username);
             res.sendStatus(200);
           } else {
             res.sendStatus(401);
