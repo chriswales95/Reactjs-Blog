@@ -13,7 +13,7 @@ body {
   background-color: rgb(238, 238, 238);
 }
 
-.row {
+.pageWrap {
   padding: 0;
   margin: 0;
   min-height: calc(100vh - 230px);
@@ -141,6 +141,7 @@ img {
   text-align: left;
   background-color: white;
   border-bottom: 1px solid #ddd;
+  overflow: scroll;
 }
 
 #userTable th {
@@ -163,4 +164,18 @@ textarea {
 input,
 textarea {
   box-shadow: 0 4px 6px -5px rgba(0, 0, 0, 0.3);
+}
+
+footer,
+.row {
+  margin: 0px;
+  padding: 10px 0px 0px 0px;
+}
+
+footer a {
+  color: white;
+}
+
+footer a:hover {
+  color: #ccc;
 }

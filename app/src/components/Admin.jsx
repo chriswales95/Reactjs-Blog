@@ -37,7 +37,7 @@ class Admin extends React.Component {
         {this.loggedIn()}
         <Header heading={"Admin"} />
         <br />
-        <div className={"row"}>
+        <div className={"pageWrap"}>
           <form onSubmit={event => this.handlePostEvent(event)}>
             <table
               className="loginForm"

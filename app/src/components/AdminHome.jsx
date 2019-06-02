@@ -33,14 +33,16 @@ class AdminHome extends React.Component {
         <React.Fragment>
           <Header heading={"Admin"} />
           <Toolbar buttons={this.buttons} />
-          <div style={{ margin: "5px" }} className={"row"}>
-            <div style={{ textAlign: "left" }} className="col-md-9 col-sm-12">
-              <div style={greetingStyle} className={"greetingBox"}>
-                <p>Hello {cookies.get("name")}</p>
+          <div style={{ margin: "5px" }} className={"pageWrap"}>
+            <div className={"row"}>
+              <div style={{ textAlign: "left" }} className="col-md-9 col-sm-12">
+                <div style={greetingStyle} className={"greetingBox"}>
+                  <p>Hello {cookies.get("name")}</p>
+                </div>
               </div>
-            </div>
-            <div className="col-md-3 col-sm-12">
-              <Sidebar content={this.sidebar} />
+              <div className="col-md-3 col-sm-12">
+                <Sidebar content={this.sidebar} />
+              </div>
             </div>
           </div>
           <Footer />

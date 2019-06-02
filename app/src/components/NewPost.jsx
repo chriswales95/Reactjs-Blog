@@ -28,7 +28,7 @@ class NewPost extends React.Component {
     return (
       <React.Fragment>
         <Header heading={"New Post"} />
-        <div className={"row"}>
+        <div className={"pageWrap"}>
           <form
             style={{ width: "100%", margin: 0, padding: "50px" }}
             onSubmit={event => this.newPost(event)}

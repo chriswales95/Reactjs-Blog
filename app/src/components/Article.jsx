@@ -44,7 +44,7 @@ class Article extends Component {
             <Header heading={post.title} />
             {this.Toolbar()}
             <div
-              className={"row"}
+              className={"pageWrap"}
               style={{
                 backgroundColor: "white",
                 margin: "35px",

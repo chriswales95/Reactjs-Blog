@@ -45,25 +45,27 @@ class App extends Component {
                   <div className="App">
                     <Header heading={"Blog Posts"} />
                     <div id={"main"} style={{ textAlign: "left" }}>
-                      <div className="row">
-                        <div className="col-md-9 col-sm-12">
-                          <ul className="mainList">
-                            {this.state.posts.map(post => (
-                              <li key={this.state.posts.indexOf(post)}>
-                                <Link
-                                  className={"main_list"}
-                                  to={`/article/${this.state.posts.indexOf(
-                                    post
-                                  )}`}
-                                >
-                                  {post.title}
-                                </Link>
-                              </li>
-                            ))}
-                          </ul>
-                        </div>
-                        <div className="col-md-3 col-sm-12">
-                          <Sidebar content={this.state.sidebar} />
+                      <div className="pageWrap">
+                        <div className={"row"}>
+                          <div className="col-md-9 col-sm-12">
+                            <ul className="mainList">
+                              {this.state.posts.map(post => (
+                                <li key={this.state.posts.indexOf(post)}>
+                                  <Link
+                                    className={"main_list"}
+                                    to={`/article/${this.state.posts.indexOf(
+                                      post
+                                    )}`}
+                                  >
+                                    {post.title}
+                                  </Link>
+                                </li>
+                              ))}
+                            </ul>
+                          </div>
+                          <div className="col-md-3 col-sm-12">
+                            <Sidebar content={this.state.sidebar} />
+                          </div>
                         </div>
                       </div>
                     </div>

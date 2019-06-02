@@ -8,12 +8,12 @@ class UserManagement extends React.Component {
   state = { users: [] };
 
   buttons = [
-    { text: "Delete", onClick: () => console.log("...") },
+    { text: "Delete Account", onClick: () => console.log("...") },
     {
-      text: "Enable",
+      text: "Enable / Disable Account",
       onClick: () => console.log("...")
     },
-    { text: "Disable", onClick: () => console.log("...") }
+    { text: "Change Password", onClick: () => console.log("...") }
   ];
 
   componentDidMount() {
@@ -30,12 +30,11 @@ class UserManagement extends React.Component {
         <React.Fragment>
           <Header heading={"User Management"} />
           <Toolbar buttons={this.buttons} />
-          <div className={"row"} style={{ padding: "20px" }}>
+          <div className={"pageWrap"} style={{ padding: "20px" }}>
             <table
               id={"userTable"}
               style={{
-                boxShadow: "0 4px 6px -5px rgba(0, 0, 0, 0.3)",
-                minWidth: "100%"
+                boxShadow: "0 4px 6px -5px rgba(0, 0, 0, 0.3)"
               }}
             >
               <tbody>
