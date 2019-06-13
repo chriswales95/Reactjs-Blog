@@ -11,7 +11,11 @@ class UserManagement extends React.Component {
   buttons = [
     { text: "Delete Account", onClick: () => console.log("...") },
     {
-      text: "Enable / Disable Account",
+      text: "Enable Account",
+      onClick: () => console.log("...")
+    },
+    {
+      text: "Disable Account",
       onClick: () => console.log("...")
     },
     { text: "Change Password", onClick: () => console.log("...") }
@@ -19,15 +23,13 @@ class UserManagement extends React.Component {
 
   componentDidMount() {
     const cookies = new Cookies();
-    const un = cookies.get("username");
+    const uName = cookies.get("username");
 
-    Axios.post("/users/userIsSU/", {
-      username: un
+    Axios.put("/users/userIsSU/", {
+      username: uName
     }).then(response => {
-      var render = this.state.render;
-
       if (response.status === 200) {
-        render = true;
+        var render = true;
         this.setState({ render });
       }
     });
@@ -38,13 +40,15 @@ class UserManagement extends React.Component {
   }
 
   render() {
-    console.log(this.state);
     if (this.state.render === true) {
       return (
         <React.Fragment>
           <Header heading={"User Management"} />
           <Toolbar buttons={this.buttons} />
-          <div className={"pageWrap"} style={{ padding: "20px" }}>
+          <div
+            className={"pageWrap"}
+            style={{ overflowX: "auto", padding: "20px" }}
+          >
             <table
               id={"userTable"}
               style={{
@@ -85,7 +89,7 @@ class UserManagement extends React.Component {
     } else {
       return (
         <React.Fragment>
-          <h1>Not authorised</h1>
+          <p>Not authorised</p>
         </React.Fragment>
       );
     }

@@ -1,5 +1,5 @@
 :root {
-  --main-theme-color: #0e275e;
+  --main-theme-color: #00407c;
   --main-theme-hover: #0099ff;
 }
 
@@ -130,9 +130,9 @@ img {
 
 #usertable {
   text-align: left;
-  padding: 2px;
+  padding: 1px;
   border: 1.5px;
-  border-collapse: collapse;
+  overflow: auto;
 }
 
 #userTable td,
@@ -141,7 +141,6 @@ img {
   text-align: left;
   background-color: white;
   border-bottom: 1px solid #ddd;
-  overflow: scroll;
 }
 
 #userTable th {

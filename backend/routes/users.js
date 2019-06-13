@@ -42,7 +42,7 @@ router.get("/manage", function(req, res, next) {
   });
 });
 
-router.post("/userIsSU", function(req, res, next) {
+router.put("/userIsSU", function(req, res, next) {
   MongoClient.connect(mongoURL, function(err, client) {
     var db = client.db("express");
 

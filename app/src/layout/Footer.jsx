@@ -25,7 +25,7 @@ function Footer() {
 
       <div
         style={{
-          backgroundColor: "#00003c",
+          backgroundColor: "#0F0A0A",
           margin: "50px 0px 0px 0px",
           minWidth: "100%"
         }}

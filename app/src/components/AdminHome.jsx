@@ -7,6 +7,10 @@ import Toolbar from "../layout/Toolbar";
 const cookies = new Cookies();
 
 class AdminHome extends React.Component {
+  state = {
+    name: cookies.get("name")
+  };
+
   buttons = [
     { text: "New Post", onClick: () => this.props.history.push("/new_blog/") },
     {
@@ -30,6 +34,7 @@ class AdminHome extends React.Component {
 
   LoggedIn() {
     if (cookies.get("LoggedIn") === "yes") {
+      const context = this.state;
       return (
         <React.Fragment>
           <Header heading={"Admin"} />
@@ -38,7 +43,7 @@ class AdminHome extends React.Component {
             <div className={"row"}>
               <div style={{ textAlign: "left" }} className="col-md-9 col-sm-12">
                 <div style={greetingStyle} className={"greetingBox"}>
-                  <p>Hello {cookies.get("name")}</p>
+                  <p>Hello {context.name}</p>
                 </div>
               </div>
               <div className="col-md-3 col-sm-12">

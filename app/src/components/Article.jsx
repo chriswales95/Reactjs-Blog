@@ -57,7 +57,7 @@ class Article extends Component {
           </div>
         </div>
       );
-    } else
+    } else {
       return (
         <div>
           <Header />
@@ -65,6 +65,7 @@ class Article extends Component {
           <Footer />
         </div>
       );
+    }
   }
 
   deletePost() {
