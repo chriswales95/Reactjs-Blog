@@ -47,21 +47,34 @@ class App extends Component {
                     <div id={"main"} style={{ textAlign: "left" }}>
                       <div className="pageWrap">
                         <div className={"row"}>
-                          <div className="col-md-9 col-sm-12">
-                            <ul className="mainList">
-                              {this.state.posts.map(post => (
-                                <li key={this.state.posts.indexOf(post)}>
+                          <div
+                            className="col-md-9 col-sm-12"
+                            style={{
+                              marginTop: "20px",
+                              marginBottom: "50px"
+                            }}
+                          >
+                            {this.state.posts.map(post => (
+                              <div
+                                style={{
+                                  backgroundColor: "white"
+                                }}
+                                className={"cardLayoutMainPage"}
+                                key={this.state.posts.indexOf(post)}
+                              >
+                                <div>
                                   <Link
-                                    className={"main_list"}
+                                    style={{ fontSize: "16pt" }}
                                     to={`/article/${this.state.posts.indexOf(
                                       post
                                     )}`}
                                   >
-                                    {post.title}
+                                    <strong>{post.title}</strong>
                                   </Link>
-                                </li>
-                              ))}
-                            </ul>
+                                  <p>{formatDate(post.date)}</p>
+                                </div>
+                              </div>
+                            ))}
                           </div>
                           <div className="col-md-3 col-sm-12">
                             <Sidebar content={this.state.sidebar} />
@@ -96,6 +109,20 @@ class App extends Component {
       </Router>
     );
   }
+}
+function formatDate(date) {
+  var fullDate = new Date(date);
+  return (
+    fullDate.getFullYear() +
+    "/" +
+    fullDate.getMonth() +
+    "/" +
+    fullDate.getDate() +
+    " : " +
+    fullDate.getHours() +
+    ":" +
+    fullDate.getMinutes()
+  );
 }
 
 export default App;

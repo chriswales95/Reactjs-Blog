@@ -178,3 +178,20 @@ footer a {
 footer a:hover {
   color: #ccc;
 }
+
+.cardLayoutMainPage {
+  box-shadow: 0 4px 6px -5px rgba(0, 0, 0, 0.3);
+  padding: 1em;
+  margin: 1em;
+  -webkit-column-break-inside: avoid;
+  page-break-inside: avoid;
+  break-inside: avoid;
+}
+
+.cardLayoutMainPage:first-child {
+  margin-top: 0;
+}
+
+.cardLayoutMainPage:last-child {
+  margin-bottom: 0;
+}

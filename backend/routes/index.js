@@ -14,7 +14,7 @@ router.get("/posts", function(req, res, next) {
       .find()
       .toArray(function(err, result) {
         if (err) throw err;
-        res.json(result);
+        res.json(result.reverse());
       });
   });
 });
@@ -43,10 +43,11 @@ router.post("/new_blog/", verifyUserCanOrDeletePosts, function(req, res, next) {
     if (err) throw err;
 
     var db = client.db("express");
-
+    var now = new Date();
     db.collection("posts").insertOne({
       title: req.body.title,
-      content: req.body.content
+      content: req.body.content,
+      date: now
     });
     res.sendStatus(200);
   });
