@@ -2,6 +2,7 @@ var express = require("express");
 var router = express.Router();
 var MongoClient = require("mongodb").MongoClient;
 const mongoURL = "mongodb://localhost:27017/express";
+const jwt = require("jsonwebtoken");
 
 router.get("/posts", function(req, res, next) {
   MongoClient.connect(mongoURL, function(err, client) {
@@ -37,7 +38,7 @@ router.get("/posts/:id", function(req, res, next) {
   });
 });
 
-router.post("/new_blog/", function(req, res, next) {
+router.post("/new_blog/", verifyUserCanOrDeletePosts, function(req, res, next) {
   MongoClient.connect(mongoURL, function(err, client) {
     if (err) throw err;
 
@@ -51,7 +52,11 @@ router.post("/new_blog/", function(req, res, next) {
   });
 });
 
-router.delete("/deletePost/", function(req, res, next) {
+router.delete("/deletePost/", verifyUserCanOrDeletePosts, function(
+  req,
+  res,
+  next
+) {
   MongoClient.connect(mongoURL, function(err, client) {
     if (err) throw err;
     var db = client.db("express");
@@ -62,4 +67,17 @@ router.delete("/deletePost/", function(req, res, next) {
     });
   });
 });
+
+function verifyUserCanOrDeletePosts(req, res, next) {
+  var token = req.cookies.token;
+
+  jwt.verify(token, "secret1234", function(err, decodedUser) {
+    if (err) {
+      console.log("Not allowed :(");
+      res.sendStatus(403);
+    } else {
+      next();
+    }
+  });
+}
 module.exports = router;

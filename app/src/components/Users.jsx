@@ -2,11 +2,9 @@ import React from "react";
 import Header from "../layout/Header";
 import Footer from "../layout/Footer";
 import Toolbar from "../layout/Toolbar";
-import Cookies from "universal-cookie";
-import Axios from "axios";
 
 class UserManagement extends React.Component {
-  state = { render: false, users: [] };
+  state = { users: [] };
 
   buttons = [
     { text: "Delete Account", onClick: () => console.log("...") },
@@ -22,25 +20,20 @@ class UserManagement extends React.Component {
   ];
 
   componentDidMount() {
-    const cookies = new Cookies();
-    const uName = cookies.get("username");
-
-    Axios.put("/users/userIsSU/", {
-      username: uName
-    }).then(response => {
-      if (response.status === 200) {
-        var render = true;
-        this.setState({ render });
-      }
-    });
-
     fetch("/users/manage")
-      .then(res => res.json())
-      .then(users => this.setState({ users }));
+      .then(res => {
+        if (res.status === 200) {
+          return res.json();
+        }
+      })
+      .then(users => {
+        this.setState({ users });
+      })
+      .catch(err => console.log(err));
   }
 
   render() {
-    if (this.state.render === true) {
+    if (typeof this.state.users !== "undefined") {
       return (
         <React.Fragment>
           <Header heading={"User Management"} />
@@ -89,7 +82,7 @@ class UserManagement extends React.Component {
     } else {
       return (
         <React.Fragment>
-          <p>Not authorised</p>
+          <h1>Not authorised</h1>
         </React.Fragment>
       );
     }

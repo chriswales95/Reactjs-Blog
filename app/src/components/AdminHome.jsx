@@ -29,6 +29,7 @@ class AdminHome extends React.Component {
     cookies.remove("LoggedIn", { path: "/" });
     cookies.remove("name", { path: "/" });
     cookies.remove("username", { path: "/" });
+    cookies.remove("token", { path: "/" });
     window.location.replace("/");
   }
 
