@@ -35,7 +35,8 @@ router.post("/login", function(req, res, next) {
                   firstName: user.firstName,
                   lastName: user.lastName
                 },
-                "secret1234"
+                "secret1234",
+                { expiresIn: "1h" }
               );
               res.cookie("token", token);
               res.sendStatus(200);

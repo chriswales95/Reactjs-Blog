@@ -14,7 +14,7 @@ router.get("/posts", function(req, res, next) {
       .find()
       .toArray(function(err, result) {
         if (err) throw err;
-        res.json(result.reverse());
+        res.json(result);
       });
   });
 });
@@ -77,6 +77,7 @@ function verifyUserCanOrDeletePosts(req, res, next) {
       console.log("Not allowed :(");
       res.sendStatus(403);
     } else {
+      console.log(decodedUser);
       next();
     }
   });

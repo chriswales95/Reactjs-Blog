@@ -3,6 +3,7 @@ import Header from "../layout/Header";
 import Footer from "../layout/Footer";
 import Cookies from "universal-cookie";
 import Toolbar from "../layout/Toolbar";
+import dateFormatter from "../utilities/dates";
 
 const cookies = new Cookies();
 
@@ -44,10 +45,20 @@ class Article extends Component {
             <Header heading={post.title} />
             {this.Toolbar()}
             <div
+              style={{
+                marginTop: "10px",
+                marginLeft: "35px",
+                paddingLeft: "10px",
+                textAlign: "left"
+              }}
+            >
+              {dateFormatter.format(post.date)}
+            </div>
+            <div
               className={"pageWrap"}
               style={{
                 backgroundColor: "white",
-                margin: "35px",
+                margin: "0px 35px 35px 35px",
                 padding: "20px",
                 boxShadow: "0 4px 6px -5px rgba(0, 0, 0, 0.3)"
               }}

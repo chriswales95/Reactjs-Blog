@@ -9,7 +9,7 @@ import Article from "./components/Article";
 import AdminHome from "./components/AdminHome";
 import NewPost from "./components/NewPost";
 import UserManagement from "./components/Users";
-
+import dateFormatter from "../src/utilities/dates";
 import "../node_modules/bootstrap/dist/css/bootstrap.min.css";
 
 import "./App.css";
@@ -71,7 +71,7 @@ class App extends Component {
                                   >
                                     <strong>{post.title}</strong>
                                   </Link>
-                                  <p>{formatDate(post.date)}</p>
+                                  <p>{dateFormatter.format(post.date)}</p>
                                 </div>
                               </div>
                             ))}
@@ -110,19 +110,4 @@ class App extends Component {
     );
   }
 }
-function formatDate(date) {
-  var fullDate = new Date(date);
-  return (
-    fullDate.getFullYear() +
-    "/" +
-    fullDate.getMonth() +
-    "/" +
-    fullDate.getDate() +
-    " : " +
-    fullDate.getHours() +
-    ":" +
-    fullDate.getMinutes()
-  );
-}
-
 export default App;
