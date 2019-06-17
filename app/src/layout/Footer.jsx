@@ -8,7 +8,7 @@ function Footer() {
           style={{ padding: "0", margin: "0" }}
           className="col-md-6 col-sm-12"
         >
-          <h2>About</h2>
+          <h3>About</h3>
           Created by Christopher Wales
           <br />A mini-project for learning ReactJS
         </div>
@@ -16,7 +16,7 @@ function Footer() {
           style={{ padding: "0", margin: "0" }}
           className="col-md-6 col-sm-12"
         >
-          <h2>Links</h2>
+          <h3>Links</h3>
           <a href={"https://chriswales.uk"}>chriswales.uk</a>
           <br />
           <a href="https://github.com/chriswales95/Reactjs-Blog">github repo</a>
@@ -26,7 +26,7 @@ function Footer() {
       <div
         style={{
           backgroundColor: "#0F0A0A",
-          margin: "50px 0px 0px 0px",
+          margin: "30px 0px 0px 0px",
           minWidth: "100%"
         }}
         className={"row"}

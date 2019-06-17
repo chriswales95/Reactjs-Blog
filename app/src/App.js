@@ -50,8 +50,8 @@ class App extends Component {
                           <div
                             className="col-md-9 col-sm-12"
                             style={{
-                              marginTop: "20px",
-                              marginBottom: "50px"
+                              marginTop: "15px",
+                              marginBottom: "10px"
                             }}
                           >
                             {this.state.posts.map(post => (
@@ -64,7 +64,7 @@ class App extends Component {
                               >
                                 <div>
                                   <Link
-                                    style={{ fontSize: "16pt" }}
+                                    style={{ fontSize: "14pt" }}
                                     to={`/article/${this.state.posts.indexOf(
                                       post
                                     )}`}

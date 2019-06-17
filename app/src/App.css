@@ -181,8 +181,8 @@ footer a:hover {
 
 .cardLayoutMainPage {
   box-shadow: 0 4px 6px -5px rgba(0, 0, 0, 0.3);
-  padding: 1em;
-  margin: 1em;
+  padding: 0.5em;
+  margin: 0.8em;
   -webkit-column-break-inside: avoid;
   page-break-inside: avoid;
   break-inside: avoid;
