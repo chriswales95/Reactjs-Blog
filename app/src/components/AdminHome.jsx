@@ -5,20 +5,37 @@ import Header from "../layout/Header";
 import Sidebar from "../layout/Sidebar";
 import Toolbar from "../layout/Toolbar";
 const cookies = new Cookies();
+const jwt = require("jsonwebtoken");
 
 class AdminHome extends React.Component {
   state = {
-    name: cookies.get("name")
+    name: cookies.get("name"),
+    buttons: [
+      {
+        text: "New Post",
+        onClick: () => this.props.history.push("/new_blog/")
+      },
+      { text: "Logout", onClick: () => this.logOut() }
+    ]
   };
 
-  buttons = [
-    { text: "New Post", onClick: () => this.props.history.push("/new_blog/") },
-    {
+  componentDidMount() {
+    var authButton = {
       text: "Authentication",
       onClick: () => this.props.history.push("/admin/users/")
-    },
-    { text: "Logout", onClick: () => this.logOut() }
-  ];
+    };
+
+    jwt.verify(cookies.get("token"), "secret1234", (err, decoded) => {
+      if (err) {
+        console.log(err);
+      } else {
+        if (decoded.admin === true) {
+          this.state.buttons.push(authButton);
+          this.setState(this.state.buttons);
+        }
+      }
+    });
+  }
 
   sidebar = {
     title: "Title",
@@ -39,7 +56,7 @@ class AdminHome extends React.Component {
       return (
         <React.Fragment>
           <Header heading={"Admin"} />
-          <Toolbar buttons={this.buttons} />
+          <Toolbar buttons={this.state.buttons} />
           <div style={{ margin: "5px" }} className={"pageWrap"}>
             <div className={"row"}>
               <div style={{ textAlign: "left" }} className="col-md-9 col-sm-12">
