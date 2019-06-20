@@ -4,20 +4,21 @@ import Footer from "../layout/Footer";
 import Toolbar from "../layout/Toolbar";
 
 class UserManagement extends React.Component {
-  state = { users: [] };
-
-  buttons = [
-    { text: "Delete Account", onClick: () => console.log("...") },
-    {
-      text: "Enable Account",
-      onClick: () => console.log("...")
-    },
-    {
-      text: "Disable Account",
-      onClick: () => console.log("...")
-    },
-    { text: "Change Password", onClick: () => console.log("...") }
-  ];
+  state = {
+    users: [],
+    buttons: [
+      { text: "Delete Account", onClick: () => console.log("...") },
+      {
+        text: "Enable Account",
+        onClick: () => console.log("...")
+      },
+      {
+        text: "Disable Account",
+        onClick: () => console.log("...")
+      },
+      { text: "Change Password", onClick: () => console.log("...") }
+    ]
+  };
 
   componentDidMount() {
     fetch("/users/manage")
@@ -37,7 +38,7 @@ class UserManagement extends React.Component {
       return (
         <React.Fragment>
           <Header heading={"User Management"} />
-          <Toolbar buttons={this.buttons} />
+          <Toolbar buttons={this.state.buttons} />
           <div
             className={"pageWrap"}
             style={{ overflowX: "auto", padding: "20px" }}

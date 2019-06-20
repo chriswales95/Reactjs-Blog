@@ -11,7 +11,6 @@ import NewPost from "./components/NewPost";
 import UserManagement from "./components/Users";
 import dateFormatter from "../src/utilities/dates";
 import "../node_modules/bootstrap/dist/css/bootstrap.min.css";
-
 import "./App.css";
 
 class App extends Component {

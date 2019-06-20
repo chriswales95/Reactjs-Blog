@@ -1,8 +1,6 @@
 import React from "react";
 
 class Sidebar extends React.Component {
-  state = {};
-
   render() {
     const content = this.props.content;
     return (

@@ -4,8 +4,6 @@ import Footer from "../layout/Footer";
 import axios from "axios";
 
 class NewPost extends React.Component {
-  state = {};
-
   newPost = async event => {
     event.preventDefault();
 

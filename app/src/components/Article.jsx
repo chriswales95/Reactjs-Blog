@@ -60,7 +60,8 @@ class Article extends Component {
                 backgroundColor: "white",
                 margin: "0px 35px 35px 35px",
                 padding: "20px",
-                boxShadow: "0 4px 6px -5px rgba(0, 0, 0, 0.3)"
+                boxShadow: "0 4px 6px -5px rgba(0, 0, 0, 0.3)",
+                textAlign: 'left'
               }}
               dangerouslySetInnerHTML={{ __html: post.content }}
             />
