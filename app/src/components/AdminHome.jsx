@@ -10,13 +10,11 @@ const jwt = require("jsonwebtoken");
 class AdminHome extends React.Component {
   state = {
     name: cookies.get("name"),
-    buttons: [
-      {
-        text: "New Post",
-        onClick: () => this.props.history.push("/new_blog/")
-      },
-      { text: "Logout", onClick: () => this.logOut() }
-    ]
+    buttons: [],
+    sidebar: {
+      title: "Title",
+      content: "Content"
+    }
   };
 
   componentDidMount() {
@@ -25,22 +23,26 @@ class AdminHome extends React.Component {
       onClick: () => this.props.history.push("/admin/users/")
     };
 
-    jwt.verify(cookies.get("token"), "secret1234", (err, decoded) => {
+    var postButton = {
+      text: "New Post",
+      onClick: () => this.props.history.push("/new_blog/")
+    };
+    var logoutButton = { text: "Logout", onClick: () => this.logOut() };
+
+    jwt.verify(cookies.get("token"), process.env.REACT_APP_SECRET_KEY, (err, decoded) => {
       if (err) {
         console.log(err);
       } else {
+        var buttons = this.state.buttons;
+        buttons.push(postButton);
         if (decoded.admin === true) {
           this.state.buttons.push(authButton);
           this.setState(this.state.buttons);
         }
+        buttons.push(logoutButton);
       }
     });
   }
-
-  sidebar = {
-    title: "Title",
-    content: "Content"
-  };
 
   logOut() {
     cookies.remove("LoggedIn", { path: "/" });
@@ -65,7 +67,7 @@ class AdminHome extends React.Component {
                 </div>
               </div>
               <div className="col-md-3 col-sm-12">
-                <Sidebar content={this.sidebar} />
+                <Sidebar content={this.state.sidebar} />
               </div>
             </div>
           </div>

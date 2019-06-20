@@ -35,7 +35,7 @@ router.post("/login", function(req, res, next) {
                   firstName: user.firstName,
                   lastName: user.lastName
                 },
-                "secret1234",
+                process.env.SECRET_KEY,
                 { expiresIn: "1h" }
               );
               res.cookie("token", token);
@@ -52,6 +52,8 @@ router.post("/login", function(req, res, next) {
 
 router.get("/manage", verifyUserIsAdmin, function(req, res, next) {
   MongoClient.connect(mongoURL, function(err, client) {
+    if(err) throw err;
+
     var db = client.db("express");
 
     db.collection("users")
@@ -65,7 +67,7 @@ router.get("/manage", verifyUserIsAdmin, function(req, res, next) {
 function verifyUserIsAdmin(req, res, next) {
   var token = req.cookies.token;
 
-  jwt.verify(token, "secret1234", function(err, decodedUser) {
+  jwt.verify(token, process.env.SECRET_KEY, function(err, decodedUser) {
     if (err) {
       throw new Error("error verifying");
     }

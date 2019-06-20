@@ -56,28 +56,30 @@ router.post("/new_blog/", verifyUserCanOrDeletePosts, function(req, res, next) {
 router.delete("/deletePost/", verifyUserCanOrDeletePosts, function(
   req,
   res,
-  next
+  _next
 ) {
   MongoClient.connect(mongoURL, function(err, client) {
     if (err) throw err;
     var db = client.db("express");
-    db.collection("posts").deleteOne({ title: req.body.title }, (err, item) => {
-      if (err) throw err;
+    db.collection("posts").deleteOne(
+      { title: req.body.title },
+      (err, _item) => {
+        if (err) throw err;
 
-      if (!err) res.sendStatus(200);
-    });
+        if (!err) res.sendStatus(200);
+      }
+    );
   });
 });
 
 function verifyUserCanOrDeletePosts(req, res, next) {
   var token = req.cookies.token;
 
-  jwt.verify(token, "secret1234", function(err, decodedUser) {
+  jwt.verify(token, process.env.SECRET_KEY, function(err, _decodedUser) {
     if (err) {
       console.log("Not allowed :(");
       res.sendStatus(403);
     } else {
-      console.log(decodedUser);
       next();
     }
   });
