@@ -2,10 +2,13 @@ import React from "react";
 import Header from "../layout/Header";
 import Footer from "../layout/Footer";
 import Toolbar from "../layout/Toolbar";
+import Cookies from "universal-cookie";
+const jwt = require("jsonwebtoken");
 
 class UserManagement extends React.Component {
   state = {
     users: [],
+    render: false,
     buttons: [
       { text: "Delete Account", onClick: () => console.log("...") },
       {
@@ -21,20 +24,40 @@ class UserManagement extends React.Component {
   };
 
   componentDidMount() {
-    fetch("/users/manage")
-      .then(res => {
-        if (res.status === 200) {
-          return res.json();
+    const cookies = new Cookies();
+
+    jwt.verify(
+      cookies.get("token"),
+      process.env.REACT_APP_SECRET_KEY,
+      (err, decoded) => {
+        if (err) {
+          console.log(err);
+          this.props.history.push("/");
         }
-      })
-      .then(users => {
-        this.setState({ users });
-      })
-      .catch(err => console.log(err));
+
+        if (decoded) {
+          if (decoded.admin === true) {
+            fetch("/users/manage")
+              .then(res => {
+                if (res.status === 200) {
+                  return res.json();
+                }
+              })
+              .then(users => {
+                this.setState({ users });
+              })
+              .catch(err => console.log(err));
+
+            var render = true;
+            this.setState({ render });
+          }
+        }
+      }
+    );
   }
 
   render() {
-    if (typeof this.state.users !== "undefined") {
+    if (this.state.render === true && typeof this.state.users !== "undefined") {
       return (
         <React.Fragment>
           <Header heading={"User Management"} />

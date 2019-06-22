@@ -19,7 +19,7 @@ function Footer() {
           <h3>Links</h3>
           <a href={"https://chriswales.uk"}>chriswales.uk</a>
           <br />
-          <a href="https://github.com/chriswales95/Reactjs-Blog">github repo</a>
+          <a href="https://github.com/chriswales95/Reactjs-Blog">GitHub repo</a>
         </div>
       </div>
 
@@ -54,7 +54,8 @@ function Footer() {
 
 const mainStyle = {
   backgroundColor: "var(--main-theme-color)",
-  color: "white"
+  color: "white",
+  marginTop: "10px"
 };
 
 export default Footer;

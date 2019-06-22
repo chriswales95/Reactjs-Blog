@@ -11,7 +11,7 @@ router.get("/posts", function(req, res, next) {
     var db = client.db("express");
 
     db.collection("posts")
-      .find()
+      .find({}, { projection: { _id: 0, content: 0, postedBy: 0 } })
       .toArray(function(err, result) {
         if (err) throw err;
         res.json(result);
@@ -47,7 +47,8 @@ router.post("/new_blog/", verifyUserCanOrDeletePosts, function(req, res, next) {
     db.collection("posts").insertOne({
       title: req.body.title,
       content: req.body.content,
-      date: now
+      date: now,
+      postedBy: req.cookies.username
     });
     res.sendStatus(200);
   });
@@ -65,7 +66,6 @@ router.delete("/deletePost/", verifyUserCanOrDeletePosts, function(
       { title: req.body.title },
       (err, _item) => {
         if (err) throw err;
-
         if (!err) res.sendStatus(200);
       }
     );

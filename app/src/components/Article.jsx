@@ -46,13 +46,17 @@ class Article extends Component {
             {this.Toolbar()}
             <div
               style={{
-                marginTop: "10px",
+                marginTop: "25px",
                 marginLeft: "35px",
+                marginRight: "35px",
                 paddingLeft: "10px",
-                textAlign: "left"
+                padding: "10px 0px 0px 20px",
+                textAlign: "left",
+                backgroundColor: "white"
               }}
             >
-              {dateFormatter.format(post.date)}
+              {dateFormatter.format(post.date)} <br />
+              {post.postedBy}
             </div>
             <div
               className={"pageWrap"}
@@ -61,7 +65,7 @@ class Article extends Component {
                 margin: "0px 35px 35px 35px",
                 padding: "20px",
                 boxShadow: "0 4px 6px -5px rgba(0, 0, 0, 0.3)",
-                textAlign: 'left'
+                textAlign: "left"
               }}
               dangerouslySetInnerHTML={{ __html: post.content }}
             />

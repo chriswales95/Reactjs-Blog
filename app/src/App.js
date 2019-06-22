@@ -86,13 +86,6 @@ class App extends Component {
                 )}
               />
               <Route path="/new_blog" component={NewPost} />
-              <Route
-                exact
-                path="/admin/"
-                component={() => {
-                  return "admin";
-                }}
-              />
               <Route exact path="/admin/login" component={Admin} />
               <Route exact path="/article/:id" component={Article} />
               <Route exact path="/admin/home" component={AdminHome} />

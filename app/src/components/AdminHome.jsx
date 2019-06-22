@@ -4,6 +4,8 @@ import Footer from "../layout/Footer";
 import Header from "../layout/Header";
 import Sidebar from "../layout/Sidebar";
 import Toolbar from "../layout/Toolbar";
+import TokenWarning from "../layout/Warnings";
+
 const cookies = new Cookies();
 const jwt = require("jsonwebtoken");
 
@@ -14,7 +16,8 @@ class AdminHome extends React.Component {
     sidebar: {
       title: "Title",
       content: "Content"
-    }
+    },
+    presentWarning: false
   };
 
   componentDidMount() {
@@ -27,21 +30,27 @@ class AdminHome extends React.Component {
       text: "New Post",
       onClick: () => this.props.history.push("/new_blog/")
     };
-    var logoutButton = { text: "Logout", onClick: () => this.logOut() };
 
-    jwt.verify(cookies.get("token"), process.env.REACT_APP_SECRET_KEY, (err, decoded) => {
-      if (err) {
-        console.log(err);
-      } else {
-        var buttons = this.state.buttons;
-        buttons.push(postButton);
-        if (decoded.admin === true) {
-          this.state.buttons.push(authButton);
-          this.setState(this.state.buttons);
+    var logoutButton = { text: "Logout", onClick: () => this.logOut() };
+    var buttons = this.state.buttons;
+    buttons.push(postButton);
+    jwt.verify(
+      cookies.get("token"),
+      process.env.REACT_APP_SECRET_KEY,
+      (err, decoded) => {
+        if (err) {
+          var presentWarning = true;
+          this.setState({ presentWarning });
+          console.log(err);
+        } else {
+          if (decoded.admin === true) {
+            this.state.buttons.push(authButton);
+          }
         }
         buttons.push(logoutButton);
+        this.setState(this.state.buttons);
       }
-    });
+    );
   }
 
   logOut() {
@@ -57,8 +66,10 @@ class AdminHome extends React.Component {
       const context = this.state;
       return (
         <React.Fragment>
+          <TokenWarning present={this.state.presentWarning} />
           <Header heading={"Admin"} />
           <Toolbar buttons={this.state.buttons} />
+
           <div style={{ margin: "5px" }} className={"pageWrap"}>
             <div className={"row"}>
               <div style={{ textAlign: "left" }} className="col-md-9 col-sm-12">

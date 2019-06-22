@@ -27,7 +27,7 @@ class Admin extends React.Component {
         }
       })
       .catch(err => {
-        alert(err.message);
+        alert(`Error ${err.response.status}: ${err.response.data}`);
       });
   };
 

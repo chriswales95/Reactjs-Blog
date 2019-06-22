@@ -1,6 +1,6 @@
 module.exports = {
-  format: function(date) {
-    var date = new Date(date);
+  format: function(input) {
+    var date = new Date(input);
     var hours = date.getHours();
     var mins = date.getMinutes();
     var seconds = date.getSeconds();
@@ -27,18 +27,6 @@ module.exports = {
       day = "0" + date.getDate();
     }
 
-    var currentDateandTime =
-      day +
-      "/" +
-      month +
-      "/" +
-      date.getFullYear() +
-      " " +
-      hours +
-      ":" +
-      mins +
-      ":" +
-      seconds;
-    return currentDateandTime;
+    return `${day}/${month}/${date.getFullYear()} ${hours}:${mins}:${seconds}`;
   }
 };
