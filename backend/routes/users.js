@@ -30,9 +30,9 @@ router.post("/login", function(req, res, _next) {
                 res.sendStatus(500);
               }
               if (result) {
-                res.cookie("LoggedIn", "yes");
-                res.cookie("name", user.firstName);
-                res.cookie("username", user.username);
+                res.cookie("LoggedIn", "yes", { maxAge: 3600000 });
+                res.cookie("name", user.firstName, { maxAge: 3600000 });
+                res.cookie("username", user.username, { maxAge: 3600000 });
                 var token = jwt.sign(
                   {
                     username: user.username,
@@ -43,7 +43,7 @@ router.post("/login", function(req, res, _next) {
                   process.env.SECRET_KEY,
                   { expiresIn: "1h" }
                 );
-                res.cookie("token", token);
+                res.cookie("token", token, { maxAge: 3600000 });
                 res.sendStatus(200);
               } else {
                 res.status(403).send("incorrect username or password");
