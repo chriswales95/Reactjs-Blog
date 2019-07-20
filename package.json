@@ -6,7 +6,10 @@
   "scripts": {
     "start": "concurrently \"npm run backend\" \" npm run app\"",
     "backend": "cd ./backend/ && nodemon start",
-    "app": "cd ./app/ && npm start"
+    "app": "cd ./app/ && npm start",
+    "deployBackend": "cd ./backend/ && npm start",
+    "deployFrontend": "cd ./app/ && npm run build",
+    "deploy": "concurrently \"npm run deployBackend\" \" npm run deployFrontend\""
   },
   "repository": {
     "type": "git",

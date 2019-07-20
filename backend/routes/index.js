@@ -1,11 +1,13 @@
 var express = require("express");
 var router = express.Router();
 var MongoClient = require("mongodb").MongoClient;
-const mongoURL = "mongodb://localhost:27017/express";
+const mongoURL = process.argv[3] === 'PRODUCTION' ? 'mongodb://chriswales.uk:27017/admin' : "mongodb://localhost:27017/admin";
 const jwt = require("jsonwebtoken");
+const authOptions = { auth: { user: process.env.DB_USER, password: process.env.DB_PWD } };
 
-router.get("/posts", function(req, res, next) {
-  MongoClient.connect(mongoURL, function(err, client) {
+router.get("/posts", function (req, res, next) {
+  
+  MongoClient.connect(mongoURL,authOptions, function(err, client) {
     if (err) throw err;
 
     var db = client.db("express");
@@ -20,7 +22,7 @@ router.get("/posts", function(req, res, next) {
 });
 
 router.get("/posts/:id", function(req, res, next) {
-  MongoClient.connect(mongoURL, function(err, client) {
+  MongoClient.connect(mongoURL,authOptions, function(err, client) {
     if (err) throw err;
 
     var db = client.db("express");
@@ -39,7 +41,7 @@ router.get("/posts/:id", function(req, res, next) {
 });
 
 router.post("/new_blog/", verifyUserCanOrDeletePosts, function(req, res, next) {
-  MongoClient.connect(mongoURL, function(err, client) {
+  MongoClient.connect(mongoURL,authOptions, function(err, client) {
     if (err) throw err;
 
     var db = client.db("express");
@@ -59,7 +61,7 @@ router.delete("/deletePost/", verifyUserCanOrDeletePosts, function(
   res,
   _next
 ) {
-  MongoClient.connect(mongoURL, function(err, client) {
+  MongoClient.connect(mongoURL, authOptions,function(err, client) {
     if (err) throw err;
     var db = client.db("express");
     db.collection("posts").deleteOne(
