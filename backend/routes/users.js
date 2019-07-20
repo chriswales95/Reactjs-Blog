@@ -2,11 +2,12 @@ var express = require("express");
 var router = express.Router();
 var MongoClient = require("mongodb").MongoClient;
 var bcrypt = require("bcrypt");
-const mongoURL = "mongodb://localhost:27017/express";
+const mongoURL = process.argv[3] === 'PRODUCTION' ? 'mongodb://chriswales.uk:27017/admin' : "mongodb://localhost:27017/admin";
 const jwt = require("jsonwebtoken");
+const authOptions = { auth: { user: process.env.DB_USER, password: process.env.DB_PWD } };
 
-router.post("/login", function(req, res, _next) {
-  MongoClient.connect(mongoURL, function(err, client) {
+router.post("/login", function (req, res, _next) {
+  MongoClient.connect(mongoURL, authOptions, function (err, client) {
     if (err) {
       throw err;
     }
@@ -15,7 +16,7 @@ router.post("/login", function(req, res, _next) {
 
     db.collection("users")
       .find({ username: req.body.username })
-      .toArray(function(err, result) {
+      .toArray(function (err, result) {
         if (err) {
           console.log(err);
           res.sendStatus(500);
@@ -24,7 +25,7 @@ router.post("/login", function(req, res, _next) {
         if (result.length > 0) {
           var user = result[0];
           if (typeof user !== "undefined") {
-            bcrypt.compare(req.body.pass, user.pass, function(err, result) {
+            bcrypt.compare(req.body.pass, user.pass, function (err, result) {
               if (err) {
                 console.log(err);
                 res.sendStatus(500);
@@ -60,8 +61,8 @@ router.post("/login", function(req, res, _next) {
   });
 });
 
-router.get("/manage", verifyUserIsAdmin, function(req, res, next) {
-  MongoClient.connect(mongoURL, function(err, client) {
+router.get("/manage", verifyUserIsAdmin, function (req, res, next) {
+  MongoClient.connect(mongoURL, authOptions, function (err, client) {
     if (err) {
       res.status(500).send("error connecting");
     }
@@ -70,7 +71,7 @@ router.get("/manage", verifyUserIsAdmin, function(req, res, next) {
 
     db.collection("users")
       .find({}, { projection: { pass: 0 } })
-      .toArray(function(err, result) {
+      .toArray(function (err, result) {
         if (err) throw err;
         res.json(result);
       });
@@ -80,7 +81,7 @@ router.get("/manage", verifyUserIsAdmin, function(req, res, next) {
 function verifyUserIsAdmin(req, res, next) {
   var token = req.cookies.token;
 
-  jwt.verify(token, process.env.SECRET_KEY, function(err, decodedUser) {
+  jwt.verify(token, process.env.SECRET_KEY, function (err, decodedUser) {
     if (err) {
       res.status(500).send("Error verifying token");
     }
