@@ -181,17 +181,8 @@ footer a:hover {
 
 .cardLayoutMainPage {
   box-shadow: 0 4px 6px -5px rgba(0, 0, 0, 0.3);
-  padding: 0.5em;
-  margin: 0.8em;
-  -webkit-column-break-inside: avoid;
-  page-break-inside: avoid;
-  break-inside: avoid;
-}
-
-.cardLayoutMainPage:first-child {
-  margin-top: 0;
-}
-
-.cardLayoutMainPage:last-child {
-  margin-bottom: 0;
+  padding: 1.2em;
+  margin: 0px 0.8em 1.8em 0.8em;
+  display: inline-flex;
+  width: 100%;
 }
