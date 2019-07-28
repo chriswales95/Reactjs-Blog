@@ -4,6 +4,7 @@ var MongoClient = require("mongodb").MongoClient;
 const mongoURL = process.argv[3] === 'PRODUCTION' ? 'mongodb://chriswales.uk:27017/admin' : "mongodb://localhost:27017/admin";
 const jwt = require("jsonwebtoken");
 const authOptions = { auth: { user: process.env.DB_USER, password: process.env.DB_PWD } };
+const objectID = require('mongodb').ObjectID;
 
 router.get("/posts", function (req, res, next) {
   MongoClient.connect(mongoURL, authOptions, function (err, client) {
@@ -13,7 +14,7 @@ router.get("/posts", function (req, res, next) {
     var startPosition, endPosition;
 
     db.collection("posts")
-      .find({}, { projection: { _id: 0, content: 0, postedBy: 0 } })
+      .find({}, { projection: { content: 0, postedBy: 0 } })
       .toArray(function (err, result) {
         if (err) throw err;
         var totalSize = result.length;
@@ -32,21 +33,24 @@ router.get("/posts", function (req, res, next) {
 });
 
 router.get("/posts/:id", function (req, res, next) {
-  MongoClient.connect(mongoURL, authOptions, function (err, client) {
-    if (err) throw err;
+  var id = req.params["id"];
+
+  MongoClient.connect(mongoURL, authOptions, (err, client) => {
+    if (err) next(err);
 
     var db = client.db("express");
-    var id = parseInt(req.params["id"]);
-    db.collection("posts")
-      .find()
-      .toArray(function (err, result) {
-        if (err) throw err;
-        if (result.length > 0) {
-          res.json(result[id]);
-        } else {
-          res.status(403);
-        }
-      });
+
+    try {
+      db.collection("posts")
+        .findOne({ _id: objectID(id) }, (err, result) => {
+          if (err) {
+            next(err);
+          }
+          res.json(result);
+        })
+    } catch (err) {
+      next(err);
+    }
   });
 });
 

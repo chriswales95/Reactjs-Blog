@@ -49,14 +49,12 @@ class Home extends Component {
                                             backgroundColor: "white"
                                         }}
                                         className={"cardLayoutMainPage"}
-                                        key={this.state.posts.indexOf(post)}
+                                        key={this.state.posts['_id']}
                                     >
                                         <div>
                                             <Link
                                                 style={{ fontSize: "14pt" }}
-                                                to={`/article/${this.state.posts.indexOf(
-                                                    post
-                                                )}`}
+                                                to={`/article/${post['_id']}`}
                                             >
                                                 <strong>{post.title}</strong>
                                             </Link>
