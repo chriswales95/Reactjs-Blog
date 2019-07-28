@@ -7,9 +7,11 @@ class Pagination extends Component {
     }
 
     generatePagination() {
+        console.log(this.props)
         var array = [];
         for (var i = 0; i <= this.getNumberOfPages(); i++) {
-            array.push(<li key={i} className="page-item"><a onClick={(e) => { this.props.setPage(e) }} className="page-link" href="/">{i + 1}</a></li>);
+            array.push(<li key={i} value={i + 1} className={`page-item ${this.props.currentPage === i + 1 ? "active" : " "}`}><a onClick={(e) => { this.props.setPage(e) }} className="page-link" href="/">{i + 1}</a></li>);
+
         }
         return array;
     }

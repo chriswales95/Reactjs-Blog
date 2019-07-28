@@ -11,6 +11,7 @@ class Home extends Component {
     state = {
         posts: [],
         numOfPosts: 0,
+        currentPage: 1,
         sidebar: { title: "Sidebar", content: "sidebar content" },
     };
 
@@ -20,7 +21,7 @@ class Home extends Component {
 
         fetch(`/posts?page=${page}`)
             .then(res => res.json())
-            .then(posts => this.setState({ posts: posts.result, numOfPosts: posts.size }))
+            .then(posts => this.setState({ posts: posts.result, numOfPosts: posts.size, currentPage: page }))
     }
 
     setPage = (event) => {
@@ -49,7 +50,7 @@ class Home extends Component {
                                             backgroundColor: "white"
                                         }}
                                         className={"cardLayoutMainPage"}
-                                        key={this.state.posts['_id']}
+                                        key={this.state.posts.title}
                                     >
                                         <div>
                                             <Link
@@ -67,7 +68,7 @@ class Home extends Component {
                                 <Sidebar content={this.state.sidebar} />
                             </div>
                         </div>
-                        <Pagination numberOfPosts={this.state.numOfPosts} setPage={this.setPage} />
+                        <Pagination numberOfPosts={this.state.numOfPosts} setPage={this.setPage} currentPage={parseInt(this.state.currentPage)} />
                     </div>
                 </div>
                 <Footer />
