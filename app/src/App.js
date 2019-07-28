@@ -1,6 +1,5 @@
 import React, { Component } from "react";
 import { BrowserRouter as Router, Route, Switch } from "react-router-dom";
-
 import Admin from "./components/Admin";
 import Article from "./components/Article";
 import AdminHome from "./components/AdminHome";

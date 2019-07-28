@@ -88,7 +88,7 @@ class Article extends Component {
     var http = new XMLHttpRequest();
     http.open("DELETE", "/deletePost/", true);
     http.setRequestHeader("Content-type", "application/json");
-    http.onreadystatechange = function() {
+    http.onreadystatechange = function () {
       if (http.readyState === 4) {
         window.location.replace("/");
       }

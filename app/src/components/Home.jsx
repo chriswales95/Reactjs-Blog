@@ -15,16 +15,21 @@ class Home extends Component {
     };
 
     componentDidMount() {
-        console.log(this.props);
-        fetch("/posts")
-            .then(res => res.json())
-            .then(posts => this.setState({ posts: posts, numOfPosts: posts.length }))
+        var urlParams = new URLSearchParams(window.location.search);
+        var page = (urlParams.get('page') || 1);
 
+        fetch(`/posts?page=${page}`)
+            .then(res => res.json())
+            .then(posts => this.setState({ posts: posts.result, numOfPosts: posts.size }))
+    }
+
+    setPage = (event) => {
+        event.preventDefault();
+        window.location.assign(`/?page=${event.target.innerHTML}`);
     }
 
     render() {
         return (
-
             <React.Fragment>
                 <Header heading={"Blog Posts"} />
                 <div id={"main"} style={{ textAlign: "left" }}>
@@ -64,10 +69,11 @@ class Home extends Component {
                                 <Sidebar content={this.state.sidebar} />
                             </div>
                         </div>
+                        <Pagination numberOfPosts={this.state.numOfPosts} setPage={this.setPage} />
                     </div>
                 </div>
                 <Footer />
-            </React.Fragment>
+            </React.Fragment >
         );
     }
 }

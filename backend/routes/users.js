@@ -13,7 +13,6 @@ router.post("/login", function (req, res, _next) {
     }
 
     var db = client.db("express");
-
     db.collection("users")
       .find({ username: req.body.username })
       .toArray(function (err, result) {

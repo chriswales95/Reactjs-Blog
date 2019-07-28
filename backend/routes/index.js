@@ -6,30 +6,38 @@ const jwt = require("jsonwebtoken");
 const authOptions = { auth: { user: process.env.DB_USER, password: process.env.DB_PWD } };
 
 router.get("/posts", function (req, res, next) {
-  
-  MongoClient.connect(mongoURL,authOptions, function(err, client) {
+  MongoClient.connect(mongoURL, authOptions, function (err, client) {
     if (err) throw err;
-
     var db = client.db("express");
+    var page = 1;
+    var startPosition, endPosition;
 
     db.collection("posts")
       .find({}, { projection: { _id: 0, content: 0, postedBy: 0 } })
-      .toArray(function(err, result) {
+      .toArray(function (err, result) {
         if (err) throw err;
-        res.json(result);
+        var totalSize = result.length;
+
+        if (req.query.page) {
+          page = req.query.page;
+          startPosition = (page - 1) * 16;
+          endPosition = startPosition + 16;
+
+          res.json({ result: result.slice(startPosition, endPosition), size: totalSize });
+        }
       });
   });
 });
 
-router.get("/posts/:id", function(req, res, next) {
-  MongoClient.connect(mongoURL,authOptions, function(err, client) {
+router.get("/posts/:id", function (req, res, next) {
+  MongoClient.connect(mongoURL, authOptions, function (err, client) {
     if (err) throw err;
 
     var db = client.db("express");
     var id = parseInt(req.params["id"]);
     db.collection("posts")
       .find()
-      .toArray(function(err, result) {
+      .toArray(function (err, result) {
         if (err) throw err;
         if (result.length > 0) {
           res.json(result[id]);
@@ -40,8 +48,8 @@ router.get("/posts/:id", function(req, res, next) {
   });
 });
 
-router.post("/new_blog/", verifyUserCanOrDeletePosts, function(req, res, next) {
-  MongoClient.connect(mongoURL,authOptions, function(err, client) {
+router.post("/new_blog/", verifyUserCanOrDeletePosts, function (req, res, next) {
+  MongoClient.connect(mongoURL, authOptions, function (err, client) {
     if (err) throw err;
 
     var db = client.db("express");
@@ -56,12 +64,12 @@ router.post("/new_blog/", verifyUserCanOrDeletePosts, function(req, res, next) {
   });
 });
 
-router.delete("/deletePost/", verifyUserCanOrDeletePosts, function(
+router.delete("/deletePost/", verifyUserCanOrDeletePosts, function (
   req,
   res,
   _next
 ) {
-  MongoClient.connect(mongoURL, authOptions,function(err, client) {
+  MongoClient.connect(mongoURL, authOptions, function (err, client) {
     if (err) throw err;
     var db = client.db("express");
     db.collection("posts").deleteOne(
@@ -77,7 +85,7 @@ router.delete("/deletePost/", verifyUserCanOrDeletePosts, function(
 function verifyUserCanOrDeletePosts(req, res, next) {
   var token = req.cookies.token;
 
-  jwt.verify(token, process.env.SECRET_KEY, function(err, _decodedUser) {
+  jwt.verify(token, process.env.SECRET_KEY, function (err, _decodedUser) {
     if (err) {
       console.log("Not allowed :(");
       res.sendStatus(403);

@@ -1,4 +1,5 @@
 import React from "react";
+import { Link } from "react-router-dom";
 
 class Sidebar extends React.Component {
   render() {
@@ -18,7 +19,7 @@ class Sidebar extends React.Component {
         <div style={{ padding: "10px" }}>
           <p>{content.content}</p>
           <li>
-            <a href="/">link to somewhere</a>
+            <Link to={'/'}>Link to somewhere</Link>
           </li>
         </div>
       </div>
