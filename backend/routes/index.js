@@ -24,6 +24,8 @@ router.get("/posts", function (req, res, next) {
           endPosition = startPosition + 16;
 
           res.json({ result: result.slice(startPosition, endPosition), size: totalSize });
+        } else {
+          res.json({ result: result, size: totalSize });
         }
       });
   });
