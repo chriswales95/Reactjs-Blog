@@ -26,7 +26,11 @@ class Home extends Component {
 
     setPage = (event) => {
         event.preventDefault();
-        window.location.assign(`/?page=${event.target.innerHTML}`);
+        var page = event.target.innerHTML;
+
+        fetch(`/posts?page=${event.target.innerHTML}`)
+            .then(res => res.json())
+            .then(posts => this.setState({ posts: posts.result, numOfPosts: posts.size, currentPage: page }))
     }
 
     render() {
@@ -46,16 +50,16 @@ class Home extends Component {
                             >
                                 {this.state.posts.map(post => (
                                     <div
+                                        key={post._id}
                                         style={{
                                             backgroundColor: "white"
                                         }}
                                         className={"cardLayoutMainPage"}
-                                        key={this.state.posts.title}
                                     >
                                         <div>
                                             <Link
                                                 style={{ fontSize: "14pt" }}
-                                                to={`/article/${post['_id']}`}
+                                                to={`/article/${post._id}`}
                                             >
                                                 <strong>{post.title}</strong>
                                             </Link>
